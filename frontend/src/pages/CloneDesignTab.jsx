@@ -8,6 +8,7 @@ import { useTranslation } from 'react-i18next';
 import { useQuery } from '@tanstack/react-query';
 import SearchableSelect from '../components/SearchableSelect';
 import DemoPresetGrid from '../components/DemoPresetGrid';
+import InfoTip from '../components/InfoTip';
 import ALL_LANGUAGES from '../languages.json';
 import { POPULAR_LANGS, PRESETS, TAGS, CATEGORIES } from '../utils/constants';
 import { Button, Input, Slider, Progress } from '../ui';
@@ -238,6 +239,7 @@ export default function CloneDesignTab(props) {
               <div className="label-row label-row--spread">
                 <span className="label-row label-row--flush">
                   <SlidersHorizontal className="label-icon" size={14} /> {t('clone.steps')}
+                  <InfoTip content={t('clone.overrides.steps_help')} />
                 </span>
                 <span className="val-bubble">{steps}</span>
               </div>
@@ -473,39 +475,41 @@ export default function CloneDesignTab(props) {
           <div className="override-content">
             <div className="grid-4">
               <div>
-                <div className="label-row label-row--spread"><span>CFG</span><span className="val-bubble">{cfg}</span></div>
+                <div className="label-row label-row--spread"><span>{t('clone.cfg')}<InfoTip content={t('clone.overrides.cfg_help')} /></span><span className="val-bubble">{cfg}</span></div>
                 <input type="range" min="1.0" max="4.0" step="0.1" value={cfg} onChange={e => setCfg(Number(e.target.value))} />
               </div>
               <div>
-                <div className="label-row label-row--spread"><span>{t('clone.speed')}</span><span className="val-bubble">{speed}x</span></div>
+                <div className="label-row label-row--spread"><span>{t('clone.speed')}<InfoTip content={t('clone.overrides.speed_help')} /></span><span className="val-bubble">{speed}x</span></div>
                 <input type="range" min="0.5" max="2.0" step="0.1" value={speed} onChange={e => setSpeed(Number(e.target.value))} />
               </div>
               <div>
-                <div className="label-row label-row--spread"><span>{t('clone.tshift')}</span><span className="val-bubble">{tShift}</span></div>
+                <div className="label-row label-row--spread"><span>{t('clone.tshift')}<InfoTip content={t('clone.overrides.tshift_help')} /></span><span className="val-bubble">{tShift}</span></div>
                 <input type="range" min="0" max="1.0" step="0.05" value={tShift} onChange={e => setTShift(Number(e.target.value))} />
               </div>
               <div>
-                <div className="label-row label-row--spread"><span>{t('clone.pos_temp')}</span><span className="val-bubble">{posTemp}</span></div>
+                <div className="label-row label-row--spread"><span>{t('clone.pos_temp')}<InfoTip content={t('clone.overrides.pos_temp_help')} /></span><span className="val-bubble">{posTemp}</span></div>
                 <input type="range" min="0" max="10" step="0.5" value={posTemp} onChange={e => setPosTemp(Number(e.target.value))} />
               </div>
               <div>
-                <div className="label-row label-row--spread"><span>{t('clone.class_temp')}</span><span className="val-bubble">{classTemp}</span></div>
+                <div className="label-row label-row--spread"><span>{t('clone.class_temp')}<InfoTip content={t('clone.overrides.class_temp_help')} /></span><span className="val-bubble">{classTemp}</span></div>
                 <input type="range" min="0" max="2" step="0.1" value={classTemp} onChange={e => setClassTemp(Number(e.target.value))} />
               </div>
               <div>
-                <div className="label-row label-row--spread"><span>{t('clone.layer_pen')}</span><span className="val-bubble">{layerPenalty}</span></div>
+                <div className="label-row label-row--spread"><span>{t('clone.layer_pen')}<InfoTip content={t('clone.overrides.layer_pen_help')} /></span><span className="val-bubble">{layerPenalty}</span></div>
                 <input type="range" min="0" max="10" step="0.5" value={layerPenalty} onChange={e => setLayerPenalty(Number(e.target.value))} />
               </div>
               <div>
-                <div className="label-row"><span>{t('clone.duration')}</span></div>
+                <div className="label-row"><span>{t('clone.duration')}<InfoTip content={t('clone.overrides.duration_help')} /></span></div>
                 <input type="text" className="input-base clone-duration-input" value={duration} onChange={e => setDuration(e.target.value)} placeholder={t('clone.auto')} />
               </div>
               <div className="clone-prod-col">
                 <label className="clone-prod-check">
                   <input type="checkbox" checked={denoise} onChange={e => setDenoise(e.target.checked)} /> {t('clone.denoise')}
+                  <InfoTip content={t('clone.overrides.denoise_help')} />
                 </label>
                 <label className="clone-prod-check">
                   <input type="checkbox" checked={postprocess} onChange={e => setPostprocess(e.target.checked)} /> {t('clone.postprocess')}
+                  <InfoTip content={t('clone.overrides.postprocess_help')} />
                 </label>
               </div>
             </div>
