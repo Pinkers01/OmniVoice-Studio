@@ -11,8 +11,6 @@
   z-index: 40;
   display: flex;
   flex-direction: column;
-  /* Chrome tokens defined at :root in index.css. The Header topbar
-     uses the same set, so changes here flow to both surfaces. */
   background: var(--chrome-bg);
   border-top: 1px solid var(--chrome-border);
   font-family: var(--font-sans);
@@ -26,12 +24,10 @@
 }
 
 .logs-footer--open {
-  /* height is set inline via React state */
   min-height: 180px;
 }
 
-/* Drag handle — 4 px strip on the top edge. Cursor + subtle hover
-   hint so it feels grabbable. */
+/* Drag handle */
 .logs-footer__resize {
   position: absolute;
   top: -2px;
@@ -71,59 +67,11 @@
   letter-spacing: 0.06em;
   margin-right: 4px;
 }
-/* Thin vertical divider between the UI-scale toggle (leftmost) and the
-   Logs title + source pills. Keeps the two distinct control groups from
-   visually running into each other. */
 .logs-footer__divider {
   width: 1px;
   height: 16px;
   background: rgba(255, 255, 255, 0.08);
   margin: 0 4px;
-}
-.logs-footer__scale {
-  margin-right: 2px;
-}
-
-/* Theme color dots */
-.logs-footer__themes {
-  display: flex;
-  align-items: center;
-  gap: 4px;
-}
-.logs-footer__theme-dot {
-  width: 12px;
-  height: 12px;
-  border-radius: 50%;
-  border: 2px solid transparent;
-  background: var(--dot-color, #888);
-  cursor: pointer;
-  transition: transform 0.15s, border-color 0.15s, box-shadow 0.15s;
-  padding: 0;
-}
-.logs-footer__theme-dot:hover {
-  transform: scale(1.25);
-  box-shadow: 0 0 6px color-mix(in srgb, var(--dot-color, #888) 50%, transparent);
-}
-.logs-footer__theme-dot.is-active {
-  border-color: var(--dot-color, #888);
-  box-shadow: 0 0 8px color-mix(in srgb, var(--dot-color, #888) 40%, transparent);
-  transform: scale(1.15);
-}
-.logs-footer__toggle {
-  background: none;
-  border: none;
-  color: #8fb2c6;
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 20px;
-  height: 20px;
-  border-radius: 3px;
-}
-.logs-footer__toggle:hover {
-  color: #ebdbb2;
-  background: rgba(255, 255, 255, 0.04);
 }
 
 /* Source pills with badges */
@@ -183,7 +131,7 @@
   color: #25e8a0;
 }
 
-/* Action buttons on the right */
+/* Right side */
 .logs-footer__right {
   display: flex;
   align-items: center;
@@ -218,7 +166,7 @@
   transform: scale(1.1);
 }
 
-/* Glowing donate heart */
+/* Donate heart */
 .logs-footer__donate {
   background: none;
   border: none;
@@ -251,6 +199,7 @@
   0%, 100% { opacity: 0.7; transform: scale(1); }
   50%      { opacity: 1;   transform: scale(1.08); }
 }
+
 .logs-footer__icon-btn {
   background: none;
   border: none;
@@ -282,7 +231,162 @@
   to { transform: rotate(360deg); }
 }
 
-/* Body (scrollable log area) */
+.logs-footer__toggle {
+  background: none;
+  border: none;
+  color: #8fb2c6;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 20px;
+  height: 20px;
+  border-radius: 3px;
+}
+.logs-footer__toggle:hover {
+  color: #ebdbb2;
+  background: rgba(255, 255, 255, 0.04);
+}
+
+/* ── Toolbar (filters / search / toggles) ─────────────────────────── */
+
+.logs-footer__toolbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 4px 12px;
+  padding: 4px 8px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+  flex-shrink: 0;
+  min-height: 30px;
+}
+
+.logs-footer__toolbar-left,
+.logs-footer__toolbar-right {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  flex-wrap: wrap;
+}
+
+.logs-footer__toolbar-label {
+  color: #6f9ab2;
+  font-size: 10px;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin-right: 2px;
+}
+
+/* Filter level chips */
+.logs-footer__filter-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  height: 22px;
+  min-width: 40px;
+  padding: 0 7px;
+  border-radius: 3px;
+  font-size: 10px;
+  cursor: pointer;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  color: #6f9ab2;
+  transition: all 0.15s;
+  user-select: none;
+}
+.logs-footer__filter-chip:hover {
+  background: rgba(255, 255, 255, 0.06);
+}
+.logs-footer__filter-chip--on {
+  background: rgba(255, 255, 255, 0.08);
+  border-color: rgba(255, 255, 255, 0.15);
+  color: #ebdbb2;
+}
+.logs-footer__filter-chip--error.logs-footer__filter-chip--on {
+  border-color: rgba(251, 73, 52, 0.45);
+  background: rgba(251, 73, 52, 0.1);
+  color: #fb4934;
+}
+.logs-footer__filter-chip--warn.logs-footer__filter-chip--on {
+  border-color: rgba(250, 189, 47, 0.35);
+  background: rgba(250, 189, 47, 0.08);
+  color: #fabd2f;
+}
+.logs-footer__filter-chip--info.logs-footer__filter-chip--on {
+  border-color: rgba(111, 154, 178, 0.35);
+  background: rgba(111, 154, 178, 0.08);
+  color: #83a598;
+}
+
+.logs-footer__filter-check {
+  display: none;
+}
+
+/* Search input */
+.logs-footer__search-wrap {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+.logs-footer__search-icon {
+  position: absolute;
+  left: 6px;
+  color: #6f9ab2;
+  pointer-events: none;
+}
+.logs-footer__search-input {
+  width: 140px;
+  height: 22px;
+  padding: 0 6px 0 22px;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 3px;
+  color: #ebdbb2;
+  font-size: 10.5px;
+  font-family: var(--font-mono);
+  transition: border-color 0.15s;
+  min-width: 80px;
+}
+.logs-footer__search-input:focus {
+  border-color: rgba(42, 212, 255, 0.5);
+  outline: none;
+  background: rgba(255, 255, 255, 0.06);
+}
+.logs-footer__search-input::placeholder {
+  color: rgba(143, 178, 198, 0.4);
+}
+
+/* Toggle chips (auto-scroll / wrap) */
+.logs-footer__toggle-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 3px;
+  height: 22px;
+  padding: 0 6px;
+  border-radius: 3px;
+  font-size: 10px;
+  cursor: pointer;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  color: #6f9ab2;
+  transition: all 0.15s;
+  user-select: none;
+}
+.logs-footer__toggle-chip:hover {
+  background: rgba(255, 255, 255, 0.06);
+}
+.logs-footer__toggle-chip input {
+  display: none;
+}
+.logs-footer__toggle-chip:has(input:checked) {
+  background: rgba(42, 212, 255, 0.1);
+  border-color: rgba(42, 212, 255, 0.35);
+  color: #2ad4ff;
+}
+
+/* ── Body (scrollable log area) ───────────────────────────────────── */
+
 .logs-footer__body {
   flex: 1;
   min-height: 0;
@@ -330,10 +434,15 @@
   color: #ebdbb2;
   flex: 1;
 }
+.logs-footer__line-text--nowrap {
+  white-space: pre;
+  word-break: normal;
+  overflow-x: auto;
+}
 .logs-footer__line--error .logs-footer__line-text { color: #fb4934; }
 .logs-footer__line--warn  .logs-footer__line-text { color: #25e8a0; }
 
-/* ── Notification panel in footer ────────────────────────────────── */
+/* ── Notification panel in footer ─────────────────────────────────── */
 
 .logs-footer__notif-body {
   display: flex;
@@ -428,4 +537,81 @@
   font-weight: 600;
   color: var(--color-brand);
   white-space: nowrap;
+}
+
+/* ── Responsive ───────────────────────────────────────────────────── */
+
+@media (max-width: 600px) {
+  .logs-footer__bar {
+    padding: 0 4px;
+    gap: 4px;
+  }
+  .logs-footer__left {
+    gap: 4px;
+  }
+  .logs-footer__title {
+    display: none;
+  }
+  .logs-footer__pill {
+    padding: 2px 6px;
+    gap: 4px;
+    font-size: 10px;
+  }
+  .logs-footer__actions {
+    gap: 1px;
+  }
+  .logs-footer__toolbar {
+    padding: 4px;
+    gap: 4px 8px;
+  }
+  .logs-footer__search-input {
+    width: 100px;
+  }
+  .logs-footer__filter-chip {
+    padding: 0 5px;
+    min-width: 36px;
+    font-size: 9px;
+  }
+  .logs-footer__toggle-chip {
+    padding: 0 5px;
+    font-size: 9px;
+  }
+  .logs-footer__icon-btn {
+    width: 28px;
+    height: 28px;
+  }
+}
+
+@media (max-width: 390px) {
+  .logs-footer__bar {
+    padding: 0 2px;
+    gap: 2px;
+  }
+  .logs-footer__pill {
+    padding: 2px 4px;
+    font-size: 9px;
+  }
+  .logs-footer__pill-label {
+    display: none;
+  }
+  .logs-footer__toolbar {
+    gap: 2px 4px;
+    padding: 3px 4px;
+  }
+  .logs-footer__search-input {
+    width: 80px;
+  }
+  .logs-footer__toolbar-label {
+    display: none;
+  }
+  .logs-footer__toggle-chip span {
+    display: none;
+  }
+  .logs-footer__filter-chip span {
+    display: none;
+  }
+  .logs-footer__icon-btn {
+    width: 32px;
+    height: 32px;
+  }
 }

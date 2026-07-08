@@ -1328,7 +1328,22 @@
     "log_copied": "Copied {{source}} log",
     "copy_failed": "Copy failed: {{message}}",
     "report_copied": "Diagnostic report copied — paste it into a GitHub issue.",
-    "report_failed": "Report failed: {{message}}"
+    "report_failed": "Report failed: {{message}}",
+    "filter_info": "Info",
+    "filter_warning": "Warning",
+    "filter_error": "Error",
+    "search": "Search",
+    "search_placeholder": "Filter lines…",
+    "autoscroll": "Auto-scroll",
+    "copy_all": "Copy all",
+    "save_file": "Save to file",
+    "wrap": "Wrap lines",
+    "save_success": "Logs saved to file",
+    "save_failed": "Save failed: {{message}}",
+    "copied_all": "Copied {{count}} lines",
+    "copied_all_one": "Copied {{count}} line",
+    "copied_all_few": "Copied {{count}} lines",
+    "no_lines_match": "No lines match the filters"
   },
   "trimmer": {
     "title": "Trim reference audio",
