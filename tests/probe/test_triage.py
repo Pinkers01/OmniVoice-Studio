@@ -32,7 +32,7 @@ def test_sanitize_strips_home_and_secrets():
 
 
 def test_detect_repo_from_origin():
-    # This repo's origin is github.com/debpalash/OmniVoice-Studio.
+    # This repo's origin is github.com/Pinkers01/OmniVoice-Studio.
     repo = T.detect_repo()
     assert repo == ("debpalash", "OmniVoice-Studio")
 
@@ -57,7 +57,7 @@ def test_triage_builds_github_url():
     res = T.triage(_failing_report())
     assert res.owner == "debpalash" and res.repo == "OmniVoice-Studio"
     assert res.url and res.url.startswith(
-        "https://github.com/debpalash/OmniVoice-Studio/issues/new?"
+        "https://github.com/Pinkers01/OmniVoice-Studio/issues/new?"
     )
     q = urllib.parse.parse_qs(urllib.parse.urlparse(res.url).query)
     assert q["title"][0] == res.title
@@ -75,7 +75,7 @@ def test_report_renders_issue_button_on_failure():
     from . import report as R
 
     rep = _failing_report()
-    rep.issue_url = "https://github.com/debpalash/OmniVoice-Studio/issues/new?title=x"
+    rep.issue_url = "https://github.com/Pinkers01/OmniVoice-Studio/issues/new?title=x"
     html = R.render_html(rep)
     assert "Draft GitHub issue" in html
     assert rep.issue_url in html

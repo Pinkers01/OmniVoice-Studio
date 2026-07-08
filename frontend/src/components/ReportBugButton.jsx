@@ -29,7 +29,7 @@ import { useTranslation } from 'react-i18next';
 
 const APP_VERSION = (typeof __APP_VERSION__ !== 'undefined' && __APP_VERSION__) || 'unknown';
 
-const ISSUES_URL = 'https://github.com/debpalash/OmniVoice-Studio/issues/new';
+const ISSUES_URL = 'https://github.com/Pinkers01/OmniVoice-Studio/issues/new';
 
 function stripHome(s) {
   if (!s) return s;
