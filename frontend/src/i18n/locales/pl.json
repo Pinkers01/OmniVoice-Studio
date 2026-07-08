@@ -476,7 +476,22 @@
     "log_copied": "Skopiowano dziennik {{source}}",
     "copy_failed": "Kopiowanie nie powiodło się: {{message}}",
     "report_copied": "Raport diagnostyczny skopiowany — wklej go do problemu w GitHubie.",
-    "report_failed": "Raport nie powiódł się: {{message}}"
+    "report_failed": "Raport nie powiódł się: {{message}}",
+    "filter_info": "Info",
+    "filter_warning": "Ostrzeżenie",
+    "filter_error": "Błąd",
+    "search": "Szukaj",
+    "search_placeholder": "Filtruj linie…",
+    "autoscroll": "Auto-przewijanie",
+    "copy_all": "Kopiuj wszystko",
+    "save_file": "Zapisz do pliku",
+    "wrap": "Zawijanie wierszy",
+    "save_success": "Zapisano logi do pliku",
+    "save_failed": "Zapis nie powiódł się: {{message}}",
+    "copied_all": "Skopiowano {{count}} linii",
+    "copied_all_one": "Skopiowano {{count}} linię",
+    "copied_all_few": "Skopiowano {{count}} linie",
+    "no_lines_match": "Żadna linia nie pasuje do filtrów"
   },
   "voice_profile": {
     "test_text": "Witamy — to jest test tego głosu.",

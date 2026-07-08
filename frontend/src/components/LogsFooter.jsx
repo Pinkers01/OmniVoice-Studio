@@ -3,6 +3,7 @@ import { copyText } from "../utils/copyText";
 import {
   ChevronUp, ChevronDown, RefreshCw, Trash2, Copy, Bug, X,
   AlertTriangle, AlertCircle, Info, FileText, Heart, Download,
+  Search, FileDown, WrapText,
 } from 'lucide-react';
 import UpdatesPanel from './UpdatesPanel';
 import UpdateStatusChip from './UpdateStatusChip';
@@ -28,9 +29,6 @@ const SOURCES = [
   { id: 'frontend', label: 'Frontend', icon: FileText },
   { id: 'tauri',    label: 'Tauri',    icon: FileText },
   { id: 'updates',  label: 'Updates',  icon: Download },
-  // Notifications used to live here as a 4th pill but that duplicated the
-  // header's bell+badge (single source of truth for notifications). The
-  // footer is logs-only now; bell handles notifications.
 ];
 
 const LS_HEIGHT = 'omnivoice.logs.height';
@@ -39,10 +37,6 @@ const LS_ACTIVE = 'omnivoice.logs.active';
 const MIN_H = 180;
 const MAX_H = 720;
 
-// Severity heuristics. We scan each line for these keywords so the UI
-// can show badge counts per source without waiting for a structured
-// logger. Matches word-boundary to avoid false positives on identifiers
-// like `warning_count` or `error_handler`.
 const RE_ERROR = /\b(error|fatal|exception|traceback)\b/i;
 const RE_WARN  = /\b(warn(ing)?|deprecated)\b/i;
 
@@ -74,12 +68,6 @@ function SeverityIcon({ level, size = 11 }) {
   return <Info size={size} color="#6f9ab2" />;
 }
 
-// UiScaleToggle and ThemePicker used to live here as always-visible
-// controls in the footer chrome. Moved to Settings → Appearance (see
-// AppearancePanel) so the footer can stay focused on logs. The store
-// fields (uiScale, theme, setUiScale, setTheme) are unchanged; only the
-// rendering moved.
-
 function SourcePill({ source, counts, active, onClick }) {
   const hasErrors = counts.error > 0;
   const hasWarns  = counts.warn > 0;
@@ -108,14 +96,10 @@ function SourcePill({ source, counts, active, onClick }) {
   );
 }
 
-// ── Seasonal / random donate heart ──────────────────────────────────────
-// Christmas (Dec), Diwali (~Oct-Nov), Valentine's (Feb), Eid (~Mar-Apr),
-// default pool rotates daily based on day-of-year.
 const HEART_POOL = ['❤️', '🩷', '💜', '💙', '🧡', '💛', '🩵', '💖', '💗'];
 const SEASONAL = [
   { month: 12, emoji: '🎄',  color: '#e74c3c', title: 'Merry Christmas! Support this project' },
   { month: 2,  emoji: '💝',  color: '#ff6b81', title: 'Happy Valentine\'s! Support this project' },
-  // Diwali window — roughly Kartik Amavasya (Oct–Nov)
   { month: 10, emoji: '🪔',  color: '#f5a623', title: 'Happy Diwali! Support this project' },
   { month: 11, emoji: '✨',  color: '#f5a623', title: 'Happy Diwali! Support this project' },
 ];
@@ -129,15 +113,13 @@ function DonateHeart() {
   if (seasonal) {
     return <span style={{ fontSize: 14, lineHeight: 1 }} title={seasonal.title}>{seasonal.emoji}</span>;
   }
-  // Rotate through the pool daily
   const pick = HEART_POOL[dayOfYear % HEART_POOL.length];
   return <span style={{ fontSize: 14, lineHeight: 1 }}>{pick}</span>;
 }
 
+const FILTER_LEVELS = ['info', 'warn', 'error'];
+
 export default function LogsFooter() {
-  // Always start collapsed on every launch — per-session toggling works
-  // but nothing persists. Kill the legacy key on the way out so users
-  // who had it stored as "open" before aren't stuck on the next load.
   if (typeof localStorage !== 'undefined') {
     localStorage.removeItem('omnivoice.logs.collapsed');
   }
@@ -152,21 +134,21 @@ export default function LogsFooter() {
     return SOURCES.some(s => s.id === v) ? v : 'backend';
   });
 
-  // Raw log state per source. Backend / Tauri come from HTTP; frontend
-  // comes from the in-process ring buffer in consoleBuffer.js.
   const [lines, setLines] = useState({ backend: [], frontend: [], tauri: [] });
   const [loading, setLoading] = useState(false);
   const [notifications, setNotifications] = useState([]);
   const [hfInput, setHfInput] = useState('');
   const scrollRef = useRef(null);
 
+  // ── New tooling state ─────────────────────────────────────────────────
+  const [filterLevels, setFilterLevels] = useState({ info: true, warn: true, error: true });
+  const [searchTerm, setSearchTerm] = useState('');
+  const [autoScroll, setAutoScroll] = useState(true);
+  const [wrapLines, setWrapLines] = useState(true);
+
   useEffect(() => localStorage.setItem(LS_HEIGHT, String(height)), [height]);
   useEffect(() => localStorage.setItem(LS_ACTIVE, active),         [active]);
 
-  // Expose the current footer height as a CSS variable on :root so the
-  // studio's .app-container grid + the setup-wizard wrapper both shrink
-  // by exactly the right amount. Keeps sidebar + main content out from
-  // under the expanded panel without any JS-driven layout math.
   useEffect(() => {
     const h = collapsed ? 28 : height;
     document.documentElement.style.setProperty('--logs-footer-height', `${h}px`);
@@ -179,7 +161,6 @@ export default function LogsFooter() {
   const backendLogs = useSystemLogs(300, true);
   const tauriLogs   = useTauriLogs(300, true);
 
-  // Sync query data into local state for the rendering pipeline
   useEffect(() => {
     if (backendLogs.data) {
       setLines(prev => ({ ...prev, backend: backendLogs.data.lines || [] }));
@@ -208,7 +189,6 @@ export default function LogsFooter() {
     setLoading(false);
   }, [backendLogs, tauriLogs, pullFrontend]);
 
-  // Frontend logs still need a local interval (no API, reads from buffer)
   useEffect(() => {
     pullFrontend();
     const iv = setInterval(pullFrontend, collapsed ? 8000 : 3000);
@@ -233,7 +213,6 @@ export default function LogsFooter() {
     return () => clearInterval(iv);
   }, [fetchNotifications]);
 
-  // Allow header bell to open notifications tab
   useEffect(() => {
     const handler = () => {
       setActive('notifications');
@@ -243,14 +222,20 @@ export default function LogsFooter() {
     return () => window.removeEventListener('omni:open-notifications', handler);
   }, []);
 
-  // Auto-scroll to bottom when new lines arrive and panel is open.
+  // Auto-scroll when new lines arrive — respects the toggle
   useEffect(() => {
-    if (collapsed) return;
+    if (collapsed || !autoScroll) return;
     const el = scrollRef.current;
     if (!el) return;
     const atBottom = el.scrollTop + el.clientHeight >= el.scrollHeight - 40;
     if (atBottom) el.scrollTop = el.scrollHeight;
-  }, [lines, active, collapsed]);
+  }, [lines, active, collapsed, autoScroll]);
+
+  // Reset search + filters when switching tabs
+  useEffect(() => {
+    setSearchTerm('');
+    setFilterLevels({ info: true, warn: true, error: true });
+  }, [active]);
 
   const counts = useMemo(() => ({
     backend:  countLevels(lines.backend),
@@ -266,7 +251,7 @@ export default function LogsFooter() {
 
   const openTo = (id) => { setActive(id); setCollapsed(false); };
 
-  // ── Resize handle (drag the top edge) ───────────────────────────────
+  // ── Resize handle ─────────────────────────────────────────────────────
   const dragRef = useRef(null);
   const onDragStart = (e) => {
     e.preventDefault();
@@ -285,7 +270,30 @@ export default function LogsFooter() {
     window.addEventListener('mouseup', up);
   };
 
-  // ── Actions ─────────────────────────────────────────────────────────
+  // ── Toggle a single filter level ──────────────────────────────────────
+  const toggleFilter = (level) => {
+    setFilterLevels(prev => ({ ...prev, [level]: !prev[level] }));
+  };
+
+  // ── Filtered lines ────────────────────────────────────────────────────
+  const currentRaw = lines[active] || [];
+  const filteredLines = useMemo(() => {
+    let result = currentRaw;
+    result = result.filter(line => {
+      const lvl = classifyLine(line);
+      return filterLevels[lvl];
+    });
+    if (searchTerm.trim()) {
+      const q = searchTerm.toLowerCase();
+      result = result.filter(line => {
+        const text = typeof line === 'string' ? line : JSON.stringify(line);
+        return text.toLowerCase().includes(q);
+      });
+    }
+    return result;
+  }, [currentRaw, filterLevels, searchTerm]);
+
+  // ── Actions ───────────────────────────────────────────────────────────
   const onClear = async () => {
     try {
       if (active === 'backend')       await clearSystemLogs();
@@ -300,7 +308,7 @@ export default function LogsFooter() {
 
   const onCopy = async () => {
     try {
-      const raw = (lines[active] || []).join('\n');
+      const raw = filteredLines.join('\n');
       await copyText(raw);
       toast.success(t('logs.log_copied', { source: active }));
     } catch (e) {
@@ -308,10 +316,26 @@ export default function LogsFooter() {
     }
   };
 
+  const onSaveFile = () => {
+    try {
+      const raw = filteredLines.join('\n');
+      const blob = new Blob([raw], { type: 'text/plain;charset=utf-8' });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      const ts = new Date().toISOString().replace(/[:.]/g, '-').slice(0, 19);
+      a.download = `omnivoice-${active}-${ts}.txt`;
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
+      URL.revokeObjectURL(url);
+      toast.success(t('logs.save_success'));
+    } catch (e) {
+      toast.error(t('logs.save_failed', { message: e?.message || e }));
+    }
+  };
+
   const onReportIssue = async () => {
-    // Collate a short diagnostic dump — last 80 lines per source + counts
-    // + user agent — onto the clipboard so the user can paste into a
-    // GitHub issue without hand-collecting files.
     const header = [
       `OmniVoice Studio — diagnostic report`,
       `When: ${new Date().toISOString()}`,
@@ -334,8 +358,7 @@ export default function LogsFooter() {
     }
   };
 
-  // ── Render ──────────────────────────────────────────────────────────
-  const current = lines[active] || [];
+  // ── Render ────────────────────────────────────────────────────────────
   const notifCounts = { error: 0, warn: notifications.filter(n => n.level === 'warn').length + notifications.filter(n => n.level === 'error').length, total: notifications.length };
 
   return (
@@ -352,9 +375,6 @@ export default function LogsFooter() {
 
       <div className="logs-footer__bar">
         <div className="logs-footer__left">
-          {/* UI scale + theme picker moved to Settings → Appearance.
-              Footer is logs-focused now; rarely-used display prefs don't
-              belong in always-visible chrome. */}
           <button
             type="button"
             className="logs-footer__toggle"
@@ -382,8 +402,11 @@ export default function LogsFooter() {
               <button className="logs-footer__icon-btn" onClick={refreshAll} disabled={loading} title={t('logs.refresh')} aria-label={t('logs.refresh_aria')}>
                 <RefreshCw size={12} className={loading ? 'spinner' : ''} />
               </button>
-              <button className="logs-footer__icon-btn" onClick={onCopy} title={t('logs.copy_visible')} aria-label={t('logs.copy_visible_aria')}>
+              <button className="logs-footer__icon-btn" onClick={onCopy} title={t('logs.copy_all')} aria-label={t('logs.copy_all')}>
                 <Copy size={12} />
+              </button>
+              <button className="logs-footer__icon-btn" onClick={onSaveFile} title={t('logs.save_file')} aria-label={t('logs.save_file')}>
+                <FileDown size={12} />
               </button>
               <button className="logs-footer__icon-btn" onClick={onClear} title={t('logs.clear')} aria-label={t('logs.clear_aria')}>
                 <Trash2 size={12} />
@@ -419,6 +442,57 @@ export default function LogsFooter() {
         </div>
       </div>
 
+      {/* ── Toolbar: filters + search + toggles (only when expanded) ── */}
+      {!collapsed && active !== 'updates' && active !== 'notifications' && (
+        <div className="logs-footer__toolbar">
+          <div className="logs-footer__toolbar-left">
+            <span className="logs-footer__toolbar-label">{t('logs.filter_info')}</span>
+            {FILTER_LEVELS.map(lvl => (
+              <label key={lvl} className={`logs-footer__filter-chip logs-footer__filter-chip--${lvl} ${filterLevels[lvl] ? 'logs-footer__filter-chip--on' : ''}`}>
+                <input
+                  type="checkbox"
+                  checked={filterLevels[lvl]}
+                  onChange={() => toggleFilter(lvl)}
+                  className="logs-footer__filter-check"
+                />
+                <SeverityIcon level={lvl} size={10} />
+                <span>{lvl === 'info' ? t('logs.filter_info') : lvl === 'warn' ? t('logs.filter_warning') : t('logs.filter_error')}</span>
+              </label>
+            ))}
+          </div>
+          <div className="logs-footer__toolbar-right">
+            <div className="logs-footer__search-wrap">
+              <Search size={12} className="logs-footer__search-icon" />
+              <input
+                type="text"
+                className="logs-footer__search-input"
+                placeholder={t('logs.search_placeholder')}
+                value={searchTerm}
+                onChange={e => setSearchTerm(e.target.value)}
+                aria-label={t('logs.search')}
+              />
+            </div>
+            <label className="logs-footer__toggle-chip" title={t('logs.autoscroll')}>
+              <input
+                type="checkbox"
+                checked={autoScroll}
+                onChange={() => setAutoScroll(a => !a)}
+              />
+              <span>{t('logs.autoscroll')}</span>
+            </label>
+            <label className="logs-footer__toggle-chip" title={t('logs.wrap')}>
+              <input
+                type="checkbox"
+                checked={wrapLines}
+                onChange={() => setWrapLines(w => !w)}
+              />
+              <WrapText size={11} />
+              <span>{t('logs.wrap')}</span>
+            </label>
+          </div>
+        </div>
+      )}
+
       {!collapsed && active === 'updates' && (
         <div className="logs-footer__body">
           <UpdatesPanel />
@@ -427,17 +501,22 @@ export default function LogsFooter() {
 
       {!collapsed && active !== 'notifications' && active !== 'updates' && (
         <div ref={scrollRef} className="logs-footer__body">
-          {current.length === 0 && (
+          {currentRaw.length === 0 && (
             <div className="logs-footer__empty">
               {active === 'frontend' ? t('logs.empty_frontend_short') : t('logs.empty_lines')}
             </div>
           )}
-          {current.map((line, i) => {
+          {currentRaw.length > 0 && filteredLines.length === 0 && (
+            <div className="logs-footer__empty">
+              {t('logs.no_lines_match')}
+            </div>
+          )}
+          {filteredLines.map((line, i) => {
             const level = classifyLine(line);
             return (
               <div key={i} className={`logs-footer__line logs-footer__line--${level}`}>
                 <span className="logs-footer__line-icon"><SeverityIcon level={level} /></span>
-                <pre className="logs-footer__line-text">{typeof line === 'string' ? line : JSON.stringify(line)}</pre>
+                <pre className={['logs-footer__line-text', !wrapLines ? 'logs-footer__line-text--nowrap' : ''].filter(Boolean).join(' ')}>{typeof line === 'string' ? line : JSON.stringify(line)}</pre>
               </div>
             );
           })}
