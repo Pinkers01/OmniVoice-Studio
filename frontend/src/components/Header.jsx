@@ -7,18 +7,18 @@ import NotificationPanel from './NotificationPanel';
 import { useAppStore } from '../store';
 
 const VIEW_META = {
-  launchpad:  { labelKey: 'header.label_launchpad',  Icon: Globe,       accent: '#f3a5b6', kickerKey: 'header.kicker_studio' },
-  clone:      { labelKey: 'header.label_clone',       Icon: Fingerprint, accent: '#d3869b', kickerKey: 'header.kicker_studio' },
+  launchpad:  { labelKey: 'header.label_launchpad',  Icon: Globe,       accent: '#2ad4ff', kickerKey: 'header.kicker_studio' },
+  clone:      { labelKey: 'header.label_clone',       Icon: Fingerprint, accent: '#2ad4ff', kickerKey: 'header.kicker_studio' },
   design:     { labelKey: 'header.label_design',      Icon: Wand2,       accent: '#8ec07c', kickerKey: 'header.kicker_studio' },
   dub:        { labelKey: 'header.label_dub',         Icon: Film,        accent: '#fe8019', kickerKey: 'header.kicker_studio' },
   projects:   { labelKey: 'header.label_projects',    Icon: FolderOpen,  accent: '#83a598', kickerKey: 'header.kicker_library' },
   gallery:    { labelKey: 'header.label_gallery',     Icon: Library,     accent: '#b8bb26', kickerKey: 'header.kicker_library' },
-  transcriptions: { labelKey: 'header.label_transcriptions', Icon: FileText, accent: '#d3869b', kickerKey: 'header.kicker_library' },
-  settings:   { labelKey: 'header.label_settings',    Icon: Settings2,   accent: '#fabd2f', kickerKey: 'header.kicker_preferences' },
+  transcriptions: { labelKey: 'header.label_transcriptions', Icon: FileText, accent: '#2ad4ff', kickerKey: 'header.kicker_library' },
+  settings:   { labelKey: 'header.label_settings',    Icon: Settings2,   accent: '#25e8a0', kickerKey: 'header.kicker_preferences' },
   enterprise: { labelKey: 'header.label_enterprise',  Icon: Building2,   accent: '#fe8019', kickerKey: 'header.kicker_licensing' },
 };
 
-function WaveBars({ color = '#f3a5b6', active }) {
+function WaveBars({ color = '#2ad4ff', active }) {
   const heights = [4, 9, 5, 11, 6, 10, 5, 8];
   return (
     <div className={`hq-wave ${active ? 'is-active' : ''}`} aria-hidden="true">
@@ -177,8 +177,8 @@ export default function Header({
 
       {/* Center: logo */}
       <div className="hq-col-center">
-        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#f3a5b6" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" className="hq-logo-mark">
-          <circle cx="12" cy="12" r="10" opacity="0.18" fill="#f3a5b6" />
+        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#2ad4ff" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" className="hq-logo-mark">
+          <circle cx="12" cy="12" r="10" opacity="0.18" fill="#2ad4ff" />
           <circle cx="12" cy="12" r="10" />
           <path d="M12 6v12" />
           <path d="M8 9v6" />

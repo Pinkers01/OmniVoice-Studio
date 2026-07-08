@@ -40,13 +40,13 @@ import './Settings.css';
 
 const TAB_DEFS = [
   { id: 'general',     icon: FileText,     accent: '#83a598' },
-  { id: 'models',      icon: Cpu,          accent: '#f3a5b6' },
-  { id: 'engines',     icon: Plug,         accent: '#d3869b' },
+  { id: 'models',      icon: Cpu,          accent: '#2ad4ff' },
+  { id: 'engines',     icon: Plug,         accent: '#2ad4ff' },
   { id: 'capture',     icon: Keyboard,     accent: '#83a598' },
   { id: 'sharing',     icon: Wifi,         accent: '#83a598' },
-  { id: 'appearance',  icon: Palette,      accent: '#d3869b' },
+  { id: 'appearance',  icon: Palette,      accent: '#2ad4ff' },
   { id: 'credentials', icon: KeyRound,     accent: '#fe8019' },
-  { id: 'logs',        icon: FileText,     accent: '#fabd2f' },
+  { id: 'logs',        icon: FileText,     accent: '#25e8a0' },
   { id: 'about',       icon: Info,         accent: '#8ec07c' },
   { id: 'privacy',     icon: ShieldCheck,  accent: '#b8bb26' },
 ];
@@ -782,7 +782,7 @@ export function ModelStoreTab({ info, modelBadge }) {
   if (loading && !data) {
     return (
       <section className="settings-section">
-        <h2><Cpu size={16} color="#f3a5b6" /> {t('settings.models')}</h2>
+        <h2><Cpu size={16} color="#2ad4ff" /> {t('settings.models')}</h2>
         <div className="settings-muted">{t('common.loading')}</div>
       </section>
     );
@@ -1125,8 +1125,8 @@ export default function Settings() {
       `- **Crash log:** ${info?.crash_log_path || '—'}`,
       `- **Update channel:** ${updateChannel}`,
       `- **Update endpoint:** ${updateChannel === 'preview'
-        ? 'https://github.com/debpalash/OmniVoice-Studio/releases/download/preview/latest.json'
-        : 'https://github.com/debpalash/OmniVoice-Studio/releases/latest/download/latest.json'}`,
+        ? 'https://github.com/Pinkers01/OmniVoice-Studio/releases/download/preview/latest.json'
+        : 'https://github.com/Pinkers01/OmniVoice-Studio/releases/latest/download/latest.json'}`,
       `- **User agent:** ${ua}`,
     ];
     const text = lines.join('\n');
@@ -1296,7 +1296,7 @@ export default function Settings() {
         <section className="settings-section">
           <h2 className="settings-section__head-row">
             <span className="settings-section__head-left">
-              <FileText size={16} color="#fabd2f" /> {t('settings.logs')}
+              <FileText size={16} color="#25e8a0" /> {t('settings.logs')}
             </span>
             <span className="settings-section__head-actions">
               <ReportBugButton />

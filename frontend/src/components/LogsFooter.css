@@ -65,7 +65,7 @@
   overflow: hidden;
 }
 .logs-footer__title {
-  color: #a89984;
+  color: #8fb2c6;
   font-size: 11px;
   text-transform: uppercase;
   letter-spacing: 0.06em;
@@ -112,7 +112,7 @@
 .logs-footer__toggle {
   background: none;
   border: none;
-  color: #a89984;
+  color: #8fb2c6;
   cursor: pointer;
   display: flex;
   align-items: center;
@@ -136,7 +136,7 @@
   border-radius: 3px;
   background: none;
   border: 1px solid transparent;
-  color: #a89984;
+  color: #8fb2c6;
   font-size: 11px;
   cursor: pointer;
   transition: all 0.1s;
@@ -149,13 +149,13 @@
 .logs-footer__pill--active {
   background: rgba(243, 165, 182, 0.12);
   border-color: rgba(243, 165, 182, 0.35);
-  color: #f3a5b6;
+  color: #2ad4ff;
 }
 .logs-footer__pill--error {
   color: #fb4934;
 }
 .logs-footer__pill--warn {
-  color: #fabd2f;
+  color: #25e8a0;
 }
 .logs-footer__pill-label {
   font-weight: 500;
@@ -180,7 +180,7 @@
 }
 .logs-footer__badge--warn {
   background: rgba(250, 189, 47, 0.2);
-  color: #fabd2f;
+  color: #25e8a0;
 }
 
 /* Action buttons on the right */
@@ -230,13 +230,13 @@
   height: 24px;
   flex-shrink: 0;
   border-radius: 4px;
-  color: #d3869b;
+  color: #2ad4ff;
   margin-left: 4px;
   transition: color 0.15s, transform 0.15s;
   animation: heart-glow 2.5s ease-in-out infinite;
 }
 .logs-footer__donate:hover {
-  color: #f3a5b6;
+  color: #2ad4ff;
   transform: scale(1.15);
 }
 .logs-footer__donate svg {
@@ -254,7 +254,7 @@
 .logs-footer__icon-btn {
   background: none;
   border: none;
-  color: #a89984;
+  color: #8fb2c6;
   cursor: pointer;
   width: 22px;
   height: 22px;
@@ -273,7 +273,7 @@
   cursor: not-allowed;
 }
 .logs-footer__icon-btn--report:hover {
-  color: #fabd2f;
+  color: #25e8a0;
 }
 .logs-footer__icon-btn .spinner {
   animation: logs-spin 1s linear infinite;
@@ -331,7 +331,7 @@
   flex: 1;
 }
 .logs-footer__line--error .logs-footer__line-text { color: #fb4934; }
-.logs-footer__line--warn  .logs-footer__line-text { color: #fabd2f; }
+.logs-footer__line--warn  .logs-footer__line-text { color: #25e8a0; }
 
 /* ── Notification panel in footer ────────────────────────────────── */
 
@@ -353,7 +353,7 @@
 }
 .logs-footer__notif-item:hover { background: rgba(255, 255, 255, 0.04); }
 
-.logs-footer__notif-item--warn  { border-left: 2px solid #fabd2f; }
+.logs-footer__notif-item--warn  { border-left: 2px solid #25e8a0; }
 .logs-footer__notif-item--error { border-left: 2px solid #fb4934; }
 .logs-footer__notif-item--info  { border-left: 2px solid #83a598; }
 

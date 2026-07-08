@@ -47,7 +47,7 @@
 }
 .swiz-check-header__label {
   font-size: 0.78rem; font-weight: 600;
-  color: var(--color-fg-muted, #a89984);
+  color: var(--color-fg-muted, #8fb2c6);
   text-transform: uppercase; letter-spacing: 0.04em;
 }
 .swiz-missing { text-align: center; font-size: 0.78rem; margin: 0; }
@@ -60,7 +60,7 @@
 .app-startup {
   display: flex; align-items: center; justify-content: center;
   min-height: 100vh; flex-direction: column; gap: 12px;
-  color: #a89984; font-size: 13px;
+  color: #8fb2c6; font-size: 13px;
 }
 .app-startup__title { font-size: 18px; color: #ebdbb2; }
 .app-wizard-wrap {

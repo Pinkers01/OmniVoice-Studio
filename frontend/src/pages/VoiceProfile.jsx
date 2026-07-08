@@ -148,7 +148,7 @@ export default function VoiceProfile({ voiceId, onBack, onOpenProject, onDeleted
   if (loading && !profile) {
     return (
       <div className="voice-profile voice-profile--loading">
-        <Sparkles className="spinner" size={24} color="#d3869b" />
+        <Sparkles className="spinner" size={24} color="#2ad4ff" />
         <span>{t('common.loading')}</span>
       </div>
     );

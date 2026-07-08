@@ -4,7 +4,7 @@ build-backend = "hatchling.build"
 
 [project]
 name = "omnivoice"
-version = "0.3.5"
+version = "0.3.6"
 description = "OmniVoice: Towards Omnilingual Zero-Shot Text-to-Speech with Diffusion Language Models"
 readme = "README.md"
 # Free and open-source under the GNU Affero General Public License v3 (see
@@ -108,6 +108,7 @@ dependencies = [
     # (Assumption A1 in RESEARCH.md was checked at execute-time and proved
     # false — `cryptography` is not on the install path today).
     "cryptography>=41",
+    "deep-translator>=1.11.4",
 ]
 
 [project.optional-dependencies]

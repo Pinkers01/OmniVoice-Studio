@@ -182,10 +182,10 @@
   font-size: var(--chrome-label-size);
   letter-spacing: var(--chrome-label-track);
   text-transform: uppercase;
-  color: #d3869b;
-  border: 1px solid color-mix(in srgb, #d3869b 40%, transparent);
+  color: #2ad4ff;
+  border: 1px solid color-mix(in srgb, #2ad4ff 40%, transparent);
   border-radius: var(--chrome-radius-pill);
-  background: color-mix(in srgb, #d3869b 8%, transparent);
+  background: color-mix(in srgb, #2ad4ff 8%, transparent);
 }
 
 /* ── Models tab: toolbar + role tabs + table ─────────────────── */
@@ -235,10 +235,10 @@
   align-items: stretch;
   gap: 4px;
   padding: 8px 12px 10px;
-  border-color: color-mix(in srgb, #f3a5b6 25%, transparent);
-  border-left-color: #f3a5b6;
-  background: linear-gradient(135deg, color-mix(in srgb, #f3a5b6 4%, transparent), color-mix(in srgb, #d3869b 2%, transparent));
-  box-shadow: 0 0 12px color-mix(in srgb, #f3a5b6 6%, transparent);
+  border-color: color-mix(in srgb, #2ad4ff 25%, transparent);
+  border-left-color: #2ad4ff;
+  background: linear-gradient(135deg, color-mix(in srgb, #2ad4ff 4%, transparent), color-mix(in srgb, #2ad4ff 2%, transparent));
+  box-shadow: 0 0 12px color-mix(in srgb, #2ad4ff 6%, transparent);
 }
 .reco-banner__gb {
   font-size: var(--text-2xs);
@@ -286,9 +286,9 @@
   font-size: 0.54rem;
   text-transform: uppercase;
   letter-spacing: 0.04em;
-  color: #d3869b;
+  color: #2ad4ff;
   padding: 0 3px;
-  border: 1px solid color-mix(in srgb, #d3869b 30%, transparent);
+  border: 1px solid color-mix(in srgb, #2ad4ff 30%, transparent);
   border-radius: 999px;
   line-height: 1.5;
 }
@@ -432,7 +432,7 @@
 }
 .models-search:focus {
   outline: none;
-  border-color: var(--chrome-accent, #fabd2f);
+  border-color: var(--chrome-accent, #25e8a0);
 }
 .models-row__size     { font-family: var(--chrome-font-mono); font-size: var(--text-xs); color: var(--chrome-fg-muted); font-variant-numeric: tabular-nums; }
 
@@ -500,7 +500,7 @@
 }
 .settings-credential__input:focus {
   outline: none;
-  border-color: var(--chrome-accent, #fabd2f);
+  border-color: var(--chrome-accent, #25e8a0);
 }
 .settings-credential__help {
   margin: var(--space-2) 0 0;
@@ -510,7 +510,7 @@
   line-height: 1.6;
 }
 .settings-credential__help a {
-  color: var(--chrome-accent, #d3869b);
+  color: var(--chrome-accent, #2ad4ff);
   text-decoration: none;
 }
 .settings-credential__help a:hover { text-decoration: underline; }

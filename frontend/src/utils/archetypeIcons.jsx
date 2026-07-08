@@ -31,9 +31,9 @@ const ICONS = {
 export const USE_CASE_COLOR = {
   narration: '#83a598',
   conversational: '#8ec07c',
-  characters: '#d3869b',
+  characters: '#2ad4ff',
   social: '#fe8019',
-  entertainment: '#fabd2f',
+  entertainment: '#25e8a0',
   advertisement: '#fb4934',
   informative: '#b8bb26',
 };

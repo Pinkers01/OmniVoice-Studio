@@ -408,8 +408,8 @@
 .archetype-sub { font-size: 0.68rem; color: var(--text-secondary); margin-top: 2px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
 
 .fav-btn { flex-shrink: 0; display: flex; align-items: center; justify-content: center; width: 26px; height: 26px; border: none; background: transparent; color: var(--text-secondary); border-radius: 7px; cursor: pointer; transition: color 0.15s ease, background 0.15s ease; }
-.fav-btn:hover { color: #fabd2f; background: rgba(255, 255, 255, 0.05); }
-.fav-btn.on { color: #fabd2f; }
+.fav-btn:hover { color: #25e8a0; background: rgba(255, 255, 255, 0.05); }
+.fav-btn.on { color: #25e8a0; }
 
 /* Facet chips (accent chip carries its flag). Always rendered (even when a
    voice has no accent/whisper chip) with a reserved min-height so every card

@@ -13,7 +13,7 @@ import { useAppStore, FONT_OPTIONS } from '../../store';
 import './AppearancePanel.css';
 
 const THEMES = [
-  { id: 'gruvbox',    label: 'Gruvbox',    dot: '#d3869b' },
+  { id: 'gruvbox',    label: 'Gruvbox',    dot: '#2ad4ff' },
   { id: 'midnight',   label: 'Midnight',   dot: '#8b5cf6' },
   { id: 'nord',       label: 'Nord',       dot: '#88c0d0' },
   { id: 'solarized',  label: 'Solarized',  dot: '#268bd2' },

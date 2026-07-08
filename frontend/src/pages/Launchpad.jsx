@@ -133,7 +133,7 @@ export default function Launchpad({
 
       {/* Action Cards */}
       <div className="lp-actions">
-        <ActionCard hue="#d3869b" Icon={Fingerprint} title={t('launchpad.clone_title')} accent="✨" count={cloneProfiles.length} onClick={() => setMode('clone')}>
+        <ActionCard hue="#2ad4ff" Icon={Fingerprint} title={t('launchpad.clone_title')} accent="✨" count={cloneProfiles.length} onClick={() => setMode('clone')}>
           {t('launchpad.clone_desc')}
         </ActionCard>
         <ActionCard hue="#8ec07c" Icon={Wand2} title={t('launchpad.design_title')} accent="🧪" count={designProfiles.length} onClick={() => setMode('design')}>
@@ -145,7 +145,7 @@ export default function Launchpad({
         <ActionCard hue="#83a598" Icon={BookOpen} title={t('launchpad.stories_title')} accent="📖" onClick={() => setMode('stories')}>
           {t('launchpad.stories_desc')}
         </ActionCard>
-        <ActionCard hue="#fabd2f" Icon={LibraryBig} title={t('launchpad.gallery_title')} accent="🎭" onClick={() => setMode('gallery')}>
+        <ActionCard hue="#25e8a0" Icon={LibraryBig} title={t('launchpad.gallery_title')} accent="🎭" onClick={() => setMode('gallery')}>
           {t('launchpad.gallery_desc')}
         </ActionCard>
         <ActionCard hue="#b8bb26" Icon={FileText} title={t('launchpad.transcripts_title')} accent="📝" onClick={() => setMode('transcriptions')}>
@@ -158,7 +158,7 @@ export default function Launchpad({
       {recentFiles.length > 0 && (
         <div className="lp-section lp-files">
           <div className="lp-files__head">
-            <div className="lp-section-title"><HardDrive size={12} color="#fabd2f" /> {t('launchpad.recent_files')}</div>
+            <div className="lp-section-title"><HardDrive size={12} color="#25e8a0" /> {t('launchpad.recent_files')}</div>
             <button type="button" className="lp-view-all" onClick={() => setMode('projects')}>
               {t('launchpad.view_all_files')} <ArrowRight size={12} />
             </button>
@@ -174,7 +174,7 @@ export default function Launchpad({
                   onClick={() => setMode('projects')}
                   title={name}
                 >
-                  <div className="proj-icon lp-proj-icon--file"><Download size={14} color="#fabd2f" /></div>
+                  <div className="proj-icon lp-proj-icon--file"><Download size={14} color="#25e8a0" /></div>
                   <div className="proj-info">
                     <div className="proj-name">{name}</div>
                     {f.mode && <div className="proj-meta">{f.mode}</div>}
@@ -207,11 +207,11 @@ export default function Launchpad({
             {/* Cloned voices */}
             {cloneProfiles.length > 0 && (
               <div>
-                <div className="lp-section-title"><Fingerprint size={12} color="#d3869b" /> {t('launchpad.cloned_voices')}</div>
+                <div className="lp-section-title"><Fingerprint size={12} color="#2ad4ff" /> {t('launchpad.cloned_voices')}</div>
                 <div className="lp-col">
                   {cloneProfiles.map(p => (
                     <div key={p.id} className="lp-project-card">
-                      <div className="proj-icon lp-proj-icon--clone"><Fingerprint size={14} color="#d3869b" /></div>
+                      <div className="proj-icon lp-proj-icon--clone"><Fingerprint size={14} color="#2ad4ff" /></div>
                       <div className="proj-info">
                         <div className="proj-name">{p.name}</div>
                         <div className="proj-meta">{p.ref_audio_path}</div>

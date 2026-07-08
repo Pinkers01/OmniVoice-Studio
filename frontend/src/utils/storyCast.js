@@ -7,7 +7,7 @@
 
 // Gruvbox-ish palette cycled when adding new cast members.
 export const CAST_COLORS = [
-  '#fabd2f', '#d3869b', '#83a598', '#b8bb26',
+  '#25e8a0', '#2ad4ff', '#83a598', '#b8bb26',
   '#fe8019', '#8ec07c', '#fb4934', '#458588',
 ];
 

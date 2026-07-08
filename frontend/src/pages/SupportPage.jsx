@@ -59,7 +59,7 @@ function SupportView() {
         <div className="donate-section__title"><span>{t('donate.platforms')}</span></div>
         <div className="donate-grid support-methods">
           {METHODS.map((m, i) => (
-            <LinkCard key={m.id} method={m} style={{ '--anim-i': i, '--card-hue': '#d3869b' }} />
+            <LinkCard key={m.id} method={m} style={{ '--anim-i': i, '--card-hue': '#2ad4ff' }} />
           ))}
         </div>
       </section>

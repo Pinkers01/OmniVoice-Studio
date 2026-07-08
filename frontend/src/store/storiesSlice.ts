@@ -51,7 +51,7 @@ export interface StoriesSlice {
 }
 
 export const DEFAULT_CAST: CastMember[] = [
-  { id: 'narrator', name: 'Narrator', color: '#fabd2f', profileId: null },
+  { id: 'narrator', name: 'Narrator', color: '#25e8a0', profileId: null },
 ];
 
 function genProjectId(): string {

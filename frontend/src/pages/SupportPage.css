@@ -37,8 +37,8 @@
   left: 3px;
   width: calc(50% - 3px);
   border-radius: var(--chrome-radius-pill);
-  background: color-mix(in srgb, #d3869b 18%, transparent);
-  border: 1px solid color-mix(in srgb, #d3869b 38%, transparent);
+  background: color-mix(in srgb, #2ad4ff 18%, transparent);
+  border: 1px solid color-mix(in srgb, #2ad4ff 38%, transparent);
   box-shadow: 0 2px 14px -5px rgba(211, 134, 155, 0.55);
   z-index: 0;
   transition:
@@ -140,11 +140,11 @@
 }
 .support-chip:hover {
   color: var(--chrome-fg);
-  border-color: color-mix(in srgb, #d3869b 42%, transparent);
-  background: color-mix(in srgb, #d3869b 8%, transparent);
+  border-color: color-mix(in srgb, #2ad4ff 42%, transparent);
+  background: color-mix(in srgb, #2ad4ff 8%, transparent);
   transform: translateY(-1px);
 }
-.support-chip svg { color: #d3869b; }
+.support-chip svg { color: #2ad4ff; }
 
 @media (max-width: 540px) {
   .support-page__topbar { padding: 14px 18px 0; }

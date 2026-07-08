@@ -219,10 +219,11 @@ function App() {
     refAudio, setRefAudio,
     pendingTrimFile, setPendingTrimFile,
     isGenerating, generationTime,
+    lastAudioUrl, lastAudioPath,
     textAreaRef,
     ingestRefAudio, insertTag, applyPreset,
     handleGenerate,
-  } = useTTS({ selectedProfile, setSelectedProfile, loadHistory });
+  } = useTTS({ selectedProfile, setSelectedProfile, loadHistory, loadProfiles });
 
   const handleSaveProfile = () => _handleSaveProfile(refAudio, refText, instruct, language);
 
@@ -1097,6 +1098,8 @@ function App() {
               isRecording={isRecording} isCleaning={isCleaning} recordingTime={recordingTime}
               vdStates={vdStates} setVdStates={setVdStates}
               isGenerating={isGenerating} generationTime={generationTime}
+              lastAudioUrl={lastAudioUrl} lastAudioPath={lastAudioPath}
+              handleNativeExport={handleNativeExport}
               applyPreset={applyPreset} insertTag={insertTag}
               handleSelectProfile={handleSelectProfile}
               handleDeleteProfile={handleDeleteProfile}

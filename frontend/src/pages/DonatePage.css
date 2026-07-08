@@ -51,12 +51,12 @@
   align-items: center;
   justify-content: center;
   border-radius: var(--chrome-radius-pill);
-  background: color-mix(in srgb, #d3869b 12%, transparent);
-  border: 1px solid color-mix(in srgb, #d3869b 30%, transparent);
+  background: color-mix(in srgb, #2ad4ff 12%, transparent);
+  border: 1px solid color-mix(in srgb, #2ad4ff 30%, transparent);
   box-shadow: 0 0 32px -4px rgba(211, 134, 155, 0.2);
 }
 .donate-hero__heart {
-  color: #f3a5b6;
+  color: #2ad4ff;
   fill: rgba(243, 165, 182, 0.35);
   filter: drop-shadow(0 0 12px rgba(243, 165, 182, 0.5));
   animation: donateHeartPulse 3s ease-in-out infinite;
@@ -220,9 +220,9 @@
   z-index: 1;
 }
 .donate-card:hover .donate-card__arrow {
-  border-color: color-mix(in srgb, var(--card-hue, #d3869b) 45%, transparent);
-  color: var(--card-hue, #d3869b);
-  background: color-mix(in srgb, var(--card-hue, #d3869b) 8%, transparent);
+  border-color: color-mix(in srgb, var(--card-hue, #2ad4ff) 45%, transparent);
+  color: var(--card-hue, #2ad4ff);
+  background: color-mix(in srgb, var(--card-hue, #2ad4ff) 8%, transparent);
 }
 
 /* ── Footer ───────────────────────────────────────────────── */

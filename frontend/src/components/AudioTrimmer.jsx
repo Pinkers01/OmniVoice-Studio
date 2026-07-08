@@ -202,7 +202,7 @@ export default function AudioTrimmer({ file, maxSeconds = 15, onConfirm, onCance
     ctx.beginPath();
     ctx.rect(Math.max(0, sx), 0, Math.max(0, Math.min(w, ex) - Math.max(0, sx)), h);
     ctx.clip();
-    ctx.fillStyle = '#d3869b';
+    ctx.fillStyle = '#2ad4ff';
     for (let x = Math.max(0, Math.floor(sx)); x < Math.min(w, Math.ceil(ex)); x++) {
       const t0 = vs + (x / w) * viewDur;
       const t1 = vs + ((x + 1) / w) * viewDur;
@@ -233,14 +233,14 @@ export default function AudioTrimmer({ file, maxSeconds = 15, onConfirm, onCance
     ctx.restore();
 
     // Selection border
-    ctx.strokeStyle = '#d3869b';
+    ctx.strokeStyle = '#2ad4ff';
     ctx.lineWidth = 1 * dpr;
     ctx.strokeRect(sx + 0.5, 0.5, selW, h - 1);
 
     // Handles (flags)
     const handleW = 6 * dpr;
     const handleH = Math.min(h, 22 * dpr);
-    ctx.fillStyle = '#d3869b';
+    ctx.fillStyle = '#2ad4ff';
     ctx.fillRect(sx - handleW / 2, 0, handleW, handleH);
     ctx.fillRect(ex - handleW / 2, 0, handleW, handleH);
     ctx.fillRect(sx - handleW / 2, h - handleH, handleW, handleH);
@@ -249,7 +249,7 @@ export default function AudioTrimmer({ file, maxSeconds = 15, onConfirm, onCance
     // Playhead
     if (c >= vs && c <= ve) {
       const cx = tToX(c);
-      ctx.fillStyle = '#fabd2f';
+      ctx.fillStyle = '#25e8a0';
       ctx.fillRect(cx, 0, 1.5 * dpr, h);
     }
   }, [sizeCanvas]);
@@ -269,7 +269,7 @@ export default function AudioTrimmer({ file, maxSeconds = 15, onConfirm, onCance
     const firstTick = Math.ceil(vs / tick) * tick;
 
     ctx.font = `${10 * dpr}px -apple-system, system-ui, sans-serif`;
-    ctx.fillStyle = '#a89984';
+    ctx.fillStyle = '#8fb2c6';
     ctx.strokeStyle = 'rgba(168,153,132,0.3)';
     ctx.lineWidth = 1;
     for (let t = firstTick; t <= ve + 1e-6; t += tick) {

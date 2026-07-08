@@ -2,7 +2,7 @@ import React, { useState, useEffect, useRef } from 'react';
 import {
   PanelLeftOpen, PanelLeftClose, Command, Globe, SlidersHorizontal, Volume2, User,
   UploadCloud, Square, Mic, Save, UserSquare2, Settings2, ChevronUp, ChevronDown,
-  Sparkles, Play, Trash2, X,
+  Sparkles, Play, Trash2, X, Download,
 } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
 import { useQuery } from '@tanstack/react-query';
@@ -43,6 +43,7 @@ export default function CloneDesignTab(props) {
     isRecording, isCleaning, recordingTime,
     vdStates, setVdStates,
     isGenerating, generationTime,
+    lastAudioUrl, lastAudioPath, handleNativeExport,
     applyPreset, insertTag,
     handleSelectProfile, handleDeleteProfile,
     handleSaveProfile, handleGenerate,
@@ -279,7 +280,25 @@ export default function CloneDesignTab(props) {
               </div>
             )}
 
-            {!selectedProfile && (
+            {/* Voice source is always available — uploading or recording a new
+                sample auto-deselects any active profile (ingestRefAudio), so a
+                user on a saved voice can still switch to mic/file in one click. */}
+            <div className="clone-mega-source">
+                <label htmlFor="audio-upload" className="mega-src-btn mega-upload">
+                  <UploadCloud size={26} />
+                  <span>🎤 {t('clone.mega_add', { defaultValue: 'Dodaj głos do klonowania' })}</span>
+                  <small>{refAudio ? refAudio.name : t('clone.mega_add_hint', { defaultValue: 'Wgraj próbkę WAV / MP3 / M4A (3–10 s)' })}</small>
+                </label>
+                <button
+                  type="button"
+                  className={`mega-src-btn mega-record${isRecording ? ' is-rec' : ''}`}
+                  onClick={isRecording ? stopRecording : startRecording}
+                >
+                  <Mic size={26} />
+                  <span>{isRecording ? `⏹ ${t('clone.mega_stop', { defaultValue: 'Zatrzymaj nagrywanie' })}` : `⏺ ${t('clone.mega_record', { defaultValue: 'Nagraj swój głos' })}`}</span>
+                  <small>{isRecording ? String(recordingTime) : t('clone.mega_record_hint', { defaultValue: 'Mów do mikrofonu' })}</small>
+                </button>
+              </div>
               <div className="clone-drop-row">
                 <input
                   type="file"
@@ -301,7 +320,7 @@ export default function CloneDesignTab(props) {
                     if (okType) ingestRefAudio(file);
                   }}
                 >
-                  <UploadCloud color="#a89984" size={18} />
+                  <UploadCloud color="#8fb2c6" size={18} />
                   <p>{refAudio ? <span className="clone-drop-filename">{refAudio.name}</span> : t('clone.drop_audio')}</p>
                 </label>
 
@@ -313,7 +332,6 @@ export default function CloneDesignTab(props) {
                   onStop={stopRecording}
                 />
               </div>
-            )}
 
             {selectedProfile && (
               <div className="clone-profile-banner">
@@ -362,7 +380,7 @@ export default function CloneDesignTab(props) {
                       value={profileName}
                       onChange={e => setProfileName(e.target.value)}
                     />
-                    <Button variant="subtle" size="sm" onClick={handleSaveProfile}>{t('clone.save')}</Button>
+                    <Button variant="primary" size="sm" onClick={() => handleSaveProfile(refAudio, refText, instruct, language)}>{t('clone.save')}</Button>
                     <Button variant="ghost"  size="sm" onClick={() => setShowSaveProfile(false)}>{t('clone.cancel')}</Button>
                   </div>
                 )}
@@ -533,6 +551,21 @@ export default function CloneDesignTab(props) {
             size="sm"
             className="clone-footer-cta"
           />
+        )}
+        {lastAudioUrl && !isGenerating && (
+          <div className="clone-result">
+            <audio controls src={lastAudioUrl} className="clone-result__audio" />
+            <Button
+              variant="primary"
+              block
+              leading={<Download size={14} />}
+              disabled={!lastAudioPath}
+              onClick={(e) => lastAudioPath && handleNativeExport?.(e, lastAudioPath, lastAudioPath, mode)}
+              className="clone-footer-cta"
+            >
+              {t('clone.download', { defaultValue: 'Pobierz dźwięk' })}
+            </Button>
+          </div>
         )}
         </div>
       </div>

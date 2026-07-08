@@ -12,7 +12,7 @@
 
 .dubbing-demo--loading {
   font-size: 11px;
-  color: var(--color-fg-muted, #928374);
+  color: var(--color-fg-muted, #7fa6bd);
   padding: 18px;
   text-align: center;
 }
@@ -50,13 +50,13 @@
 }
 
 .dubbing-demo__sync input {
-  accent-color: #f3a5b6;
+  accent-color: #2ad4ff;
 }
 
 .dubbing-demo__dismiss {
   border: 0;
   background: transparent;
-  color: var(--color-fg-muted, #928374);
+  color: var(--color-fg-muted, #7fa6bd);
   cursor: pointer;
   padding: 2px 4px;
   border-radius: 4px;
@@ -92,7 +92,7 @@
 
 .dubbing-demo__pane-label span {
   font-weight: 400;
-  color: var(--color-fg-muted, #928374);
+  color: var(--color-fg-muted, #7fa6bd);
   font-size: 10px;
   margin-left: 4px;
   text-transform: uppercase;
@@ -127,7 +127,7 @@
 
 .dubbing-demo__picker-label {
   font-size: 10px;
-  color: var(--color-fg-muted, #928374);
+  color: var(--color-fg-muted, #7fa6bd);
   text-transform: uppercase;
   letter-spacing: 0.05em;
   margin-right: 4px;

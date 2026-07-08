@@ -443,7 +443,7 @@ export default function DubTab(props) {
                     }
                   }}>
                   <div className="dub-idle-drop__puck">
-                    <UploadCloud color="#d3869b" size={28} />
+                    <UploadCloud color="#2ad4ff" size={28} />
                   </div>
                   <div className="dub-idle-drop__lines">
                     <div className="dub-idle-drop__title">{t('dub.drop_here')}</div>
@@ -453,7 +453,7 @@ export default function DubTab(props) {
                     className="dub-ingest-row"
                     onClick={e => e.preventDefault()}
                   >
-                    <Link2 size={13} color="#a89984" />
+                    <Link2 size={13} color="#8fb2c6" />
                     <input
                       type="text"
                       placeholder={t('dub.paste_url')}
@@ -670,7 +670,7 @@ export default function DubTab(props) {
                 overlayContent={(dubStep === 'generating' || dubStep === 'stopping') ? (
                   <div className="dub-gen-overlay">
                     <div className="dub-gen-overlay__head">
-                      {dubStep === 'stopping' ? <Loader className="spinner" size={14} color="#a89984" /> : <Sparkles className="spinner" size={14} color="#d3869b" />}
+                      {dubStep === 'stopping' ? <Loader className="spinner" size={14} color="#8fb2c6" /> : <Sparkles className="spinner" size={14} color="#2ad4ff" />}
                       <span className={`dub-gen-overlay__title ${dubStep === 'stopping' ? 'is-stopping' : ''}`}>
                         {dubStep === 'stopping' ? t('dub.stopping') : t('dub.generate_dub') + ` ${dubProgress.current}/${dubProgress.total}…`}
                       </span>
@@ -1234,7 +1234,7 @@ function PrepOverlay({ stage, progress, onAbort, large = false }) {
 
   const body = (
     <>
-      <Loader className="spinner" size={large ? 28 : 20} color="#d3869b" />
+      <Loader className="spinner" size={large ? 28 : 20} color="#2ad4ff" />
       <span className="dub-prep-overlay__title" style={{ fontSize: large ? '0.95rem' : '0.85rem' }}>
         {LABEL[stage] || t('dub.prep_preparing')}
       </span>
@@ -1280,7 +1280,7 @@ function TranscribeOverlay({ elapsed, duration, onAbort }) {
   return (
     <div className="dub-trans-overlay">
       <div className="dub-trans-overlay__head">
-        <Loader className="spinner" size={18} color="#d3869b" />
+        <Loader className="spinner" size={18} color="#2ad4ff" />
         <span className="dub-trans-overlay__title">{t('dub.transcribing')}</span>
       </div>
       <div className="dub-trans-overlay__stats">

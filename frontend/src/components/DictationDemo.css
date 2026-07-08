@@ -65,7 +65,7 @@
 .dictation-demo__status--pending {
   background: rgba(215, 153, 33, 0.10);
   border-color: rgba(215, 153, 33, 0.30);
-  color: #fabd2f;
+  color: #25e8a0;
 }
 
 .dictation-demo__status--warn {
@@ -102,7 +102,7 @@
   align-items: center;
   gap: 8px;
   font-size: 10px;
-  color: var(--color-fg-muted, #928374);
+  color: var(--color-fg-muted, #7fa6bd);
 }
 
 .dictation-demo__lang {

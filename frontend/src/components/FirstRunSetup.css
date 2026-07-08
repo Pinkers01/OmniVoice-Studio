@@ -12,7 +12,7 @@
  */
 
 .frs {
-  --frs-accent: var(--chrome-accent, #e8a3b4);
+  --frs-accent: var(--chrome-accent, #5cd6f0);
   --frs-ok: var(--chrome-severity-ok, #98971a);
   --frs-err: var(--chrome-severity-err, #d4554a);
   --frs-ink: var(--chrome-fg, #ece6dd);

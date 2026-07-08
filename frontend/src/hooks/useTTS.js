@@ -1,6 +1,7 @@
 import { useState, useRef, useCallback } from 'react';
 import { useAppStore } from '../store';
 import { generateSpeech, audioUrlWithCacheBust } from '../api/generate';
+import { createProfile } from '../api/profiles';
 import { playBlobAudio, playPing } from '../utils/media';
 import { probeAudioDuration } from '../utils/format';
 import { CLONE_MAX_SECONDS, PRESETS } from '../utils/constants';
@@ -13,7 +14,7 @@ const t = i18next.t.bind(i18next);
  * Encapsulates TTS generation logic, streaming response handling,
  * audio ingestion (with trim gate), and preset/tag helpers.
  */
-export default function useTTS({ selectedProfile, setSelectedProfile, loadHistory }) {
+export default function useTTS({ selectedProfile, setSelectedProfile, loadHistory, loadProfiles }) {
   const text = useAppStore(s => s.text);
   const setText = useAppStore(s => s.setText);
   const language = useAppStore(s => s.language);
@@ -37,6 +38,11 @@ export default function useTTS({ selectedProfile, setSelectedProfile, loadHistor
   const [pendingTrimFile, setPendingTrimFile] = useState(null);
   const [isGenerating, setIsGenerating] = useState(false);
   const [generationTime, setGenerationTime] = useState(0);
+  // Last synthesized result, surfaced as an on-screen player + download button
+  // so the user can save the audio without hunting through the history sidebar.
+  const [lastAudioUrl, setLastAudioUrl] = useState(null);   // object URL for in-app playback
+  const [lastAudioPath, setLastAudioPath] = useState(null); // server path for native/HTTP download
+  const lastUrlRef = useRef(null);
   const timerRef = useRef(null);
   const textAreaRef = useRef(null);
 
@@ -68,7 +74,10 @@ export default function useTTS({ selectedProfile, setSelectedProfile, loadHistor
 
   const handleGenerate = useCallback(async () => {
     if (!text.trim()) return toast.error(t('tts_errors.enter_text'));
-    if (mode === 'clone' && !refAudio && !selectedProfile) return toast.error(t('tts_errors.upload_or_select'));
+    // Pinky fix: brak profilu/ref w trybie clone NIE blokuje — generujemy domyślnym głosem.
+    const cloneNoSource = mode === 'clone' && !refAudio && !selectedProfile;
+    // ad-hoc głos (wgrany/nagrany, jeszcze nie profil) → po generacji zapamiętamy go jako profil
+    const wasAdHoc = mode === 'clone' && !!refAudio && !selectedProfile;
     setIsGenerating(true);
     setGenerationTime(0);
     const st = Date.now();
@@ -103,6 +112,9 @@ export default function useTTS({ selectedProfile, setSelectedProfile, loadHistor
           const safeBlob = new Blob([arrBuf], { type: refAudio.type });
           formData.append("ref_audio", safeBlob, refAudio.name || "audio.wav");
           formData.append("ref_text", refText);
+        } else if (cloneNoSource) {
+          // brak źródła → domyślny głos (random seed), żeby synteza zawsze działała
+          formData.append("seed", Math.floor(Math.random() * 2147483647));
         }
         if (instruct) formData.append("instruct", instruct);
       } else {
@@ -150,9 +162,37 @@ export default function useTTS({ selectedProfile, setSelectedProfile, loadHistor
       }
 
       const blob = new Blob(chunks, { type: 'audio/wav' });
+      // Surface the result on-screen: revoke the previous object URL, expose a
+      // fresh one for the inline player + download button.
+      if (lastUrlRef.current) { try { URL.revokeObjectURL(lastUrlRef.current); } catch (e) {} }
+      const resUrl = URL.createObjectURL(blob);
+      lastUrlRef.current = resUrl;
+      setLastAudioUrl(resUrl);
       try { await playBlobAudio(blob); } catch (e) {}
 
+      // ── ZAPAMIĘTAJ GŁOS: pierwszy raz z próbki → auto-zapis jako profil + wybór.
+      // Dzięki temu kolejne generacje lecą z tego samego głosu, aż Pinky go zmieni.
+      if (wasAdHoc && refAudio) {
+        try {
+          const ab = await refAudio.arrayBuffer();
+          const fd = new FormData();
+          const nm = (refAudio.name || 'głos').replace(/\.[^.]+$/, '').slice(0, 24);
+          fd.append('name', `${nm} ${Math.floor(Math.random() * 9000 + 1000)}`);
+          fd.append('ref_audio', new Blob([ab], { type: refAudio.type || 'audio/wav' }), refAudio.name || 'voice.wav');
+          fd.append('ref_text', refText || '');
+          fd.append('instruct', instruct || '');
+          fd.append('language', language || 'Auto');
+          const prof = await createProfile(fd);
+          if (prof?.id) { setSelectedProfile(prof.id); setRefAudio(null); }
+          if (loadProfiles) await loadProfiles();
+          toast.success(t('clone.voice_remembered', { defaultValue: '🎙️ Głos zapamiętany — możesz generować dalej' }));
+        } catch (e) { /* zapamiętanie best-effort, nie blokuje generacji */ }
+      }
+
       await loadHistory();
+      // Newest history row carries the server-side audio_path that the native
+      // (Tauri) save dialog + HTTP download both need.
+      try { setLastAudioPath(useAppStore.getState().history?.[0]?.audio_path || null); } catch (e) {}
       setSidebarTab('history');
       playPing();
     } catch (err) {
@@ -165,12 +205,13 @@ export default function useTTS({ selectedProfile, setSelectedProfile, loadHistor
       clearInterval(timerRef.current);
       setIsGenerating(false);
     }
-  }, [text, mode, selectedProfile, refAudio, refText, language, instruct, steps, cfg, speed, denoise, tShift, posTemp, classTemp, layerPenalty, postprocess, duration, vdStates, loadHistory, setSidebarTab]);
+  }, [text, mode, selectedProfile, refAudio, refText, language, instruct, steps, cfg, speed, denoise, tShift, posTemp, classTemp, layerPenalty, postprocess, duration, vdStates, loadHistory, setSidebarTab, loadProfiles, setSelectedProfile]);
 
   return {
     refAudio, setRefAudio,
     pendingTrimFile, setPendingTrimFile,
     isGenerating, generationTime,
+    lastAudioUrl, lastAudioPath,
     textAreaRef,
     ingestRefAudio,
     insertTag, applyPreset,

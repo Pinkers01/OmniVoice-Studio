@@ -131,7 +131,7 @@ export default function Projects({
         title: pr.name || pr.id,
         subtitle: kind === 'design' ? t('projects.designed_voice') : t('projects.cloned_voice'),
         ts: (pr.updated_at || pr.created_at || 0) * 1000,
-        accent: kind === 'design' ? '#8ec07c' : '#d3869b',
+        accent: kind === 'design' ? '#8ec07c' : '#2ad4ff',
         Icon: kind === 'design' ? Wand2 : Fingerprint,
         onClick: () => onOpenProfile?.(pr.id),
       });
@@ -143,7 +143,7 @@ export default function Projects({
         title: (h.text || h.prompt || h.filename || t('projects.generated_audio')).slice(0, 80),
         subtitle: h.language || h.voice || '',
         ts: h.timestamp || h.created_at || 0,
-        accent: '#f3a5b6',
+        accent: '#2ad4ff',
         Icon: Music,
         onClick: undefined,
       });
@@ -155,7 +155,7 @@ export default function Projects({
         title: e.path?.split('/').pop() || e.filename || t('projects.export'),
         subtitle: e.mode || '',
         ts: (e.created_at || 0) * 1000,
-        accent: '#fabd2f',
+        accent: '#25e8a0',
         Icon: Download,
         onClick: () => e.path && onRevealExport?.(e.path),
       });

@@ -6,17 +6,17 @@ import {
 } from 'lucide-react';
 
 const ITEM_DEFS = [
-  { id: 'launchpad',     Icon: Globe,       tKey: 'launchpad',   accent: '#f3a5b6' },
-  { id: 'clone',         Icon: Fingerprint, tKey: 'clone',       accent: '#d3869b' },
+  { id: 'launchpad',     Icon: Globe,       tKey: 'launchpad',   accent: '#2ad4ff' },
+  { id: 'clone',         Icon: Fingerprint, tKey: 'clone',       accent: '#2ad4ff' },
   { id: 'design',        Icon: Wand2,       tKey: 'design',      accent: '#8ec07c' },
   { id: 'dub',           Icon: Film,        tKey: 'dub',         accent: '#fe8019' },
-  { id: 'stories',       Icon: BookOpen,    tKey: 'stories',     accent: '#fabd2f' },
+  { id: 'stories',       Icon: BookOpen,    tKey: 'stories',     accent: '#25e8a0' },
   { id: 'gallery',       Icon: Library,     tKey: 'gallery',     accent: '#b8bb26' },
-  { id: 'transcriptions',Icon: FileText,    tKey: 'transcripts', accent: '#d3869b' },
+  { id: 'transcriptions',Icon: FileText,    tKey: 'transcripts', accent: '#2ad4ff' },
   { id: 'projects',      Icon: FolderOpen,  tKey: 'omnidrive',   accent: '#83a598' },
 ];
 const FOOTER_DEFS = [
-  { id: 'settings', Icon: Settings2, tKey: 'settings', accent: '#fabd2f' },
+  { id: 'settings', Icon: Settings2, tKey: 'settings', accent: '#25e8a0' },
 ];
 
 function RailBtn({ active, Icon, label, accent, onClick }) {

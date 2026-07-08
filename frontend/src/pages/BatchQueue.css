@@ -107,7 +107,7 @@
 .batch-queue__progress-fill {
   height: 100%;
   border-radius: 3px;
-  background: linear-gradient(90deg, #d3869b 0%, #f3a5b6 50%, #b8bb26 100%);
+  background: linear-gradient(90deg, #2ad4ff 0%, #2ad4ff 50%, #b8bb26 100%);
   transition: width 0.4s ease;
   position: relative;
 }
@@ -204,7 +204,7 @@
 .batch-queue__card-dl:hover {
   background: var(--color-bg-elev-3);
   border-color: rgba(211, 134, 155, 0.5);
-  color: #f3a5b6;
+  color: #2ad4ff;
 }
 
 /* ── Actions row ──────────────────────────────────────────────────── */

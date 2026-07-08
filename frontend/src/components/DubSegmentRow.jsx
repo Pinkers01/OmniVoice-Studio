@@ -79,7 +79,7 @@ function DubSegmentRow({
     } else if (fitStatus.status === 'overflows') {
       const over = fitStatus.overflow_s || 0;
       fitBadge = {
-        color: over > 0.5 ? '#fb4934' : '#fabd2f',
+        color: over > 0.5 ? '#fb4934' : '#25e8a0',
         Icon: AlertCircle,
         label: t('segment.fit_overflows', { seconds: over.toFixed(2) }),
         title: t('segment.fit_overflows_title', { seconds: over.toFixed(2) }),
@@ -87,7 +87,7 @@ function DubSegmentRow({
     } else if (fitStatus.status === 'video_stretched') {
       const r = fitStatus.stretch_ratio || 1.0;
       fitBadge = {
-        color: r > 1.18 ? '#fb4934' : r > 1.05 ? '#fabd2f' : '#83a598',
+        color: r > 1.18 ? '#fb4934' : r > 1.05 ? '#25e8a0' : '#83a598',
         Icon: Circle,
         label: t('segment.fit_stretched', { ratio: r.toFixed(2) }),
         title: t('segment.fit_stretched_title', { ratio: r.toFixed(2) }),
@@ -100,7 +100,7 @@ function DubSegmentRow({
     } else if (r >= 0.95 && r <= 1.05) {
       fitBadge = { color: '#b8bb26', Icon: CheckCircle, label: t('segment.fit_fits'), title: t('segment.fit_audio_title') };
     } else {
-      fitBadge = { color: '#fabd2f', Icon: Circle, label: `${Math.round(r * 100)}%`, title: t('segment.fit_ratio_title', { pct: Math.round(r * 100) }) };
+      fitBadge = { color: '#25e8a0', Icon: Circle, label: `${Math.round(r * 100)}%`, title: t('segment.fit_ratio_title', { pct: Math.round(r * 100) }) };
     }
   }
 
@@ -140,7 +140,7 @@ function DubSegmentRow({
         onChange={(e) => onSelect(seg.id, idx, e.nativeEvent.shiftKey)}
         onClick={(e) => onSelect(seg.id, idx, e.shiftKey)}
         disabled={disabled}
-        style={{ accentColor: '#d3869b' }}
+        style={{ accentColor: '#2ad4ff' }}
         className="seg-check"
         title={t('segment.select_title')}
       />
@@ -174,7 +174,7 @@ function DubSegmentRow({
           <span className="seg-time-sep">–</span>
           <span className="seg-time-end">{formatTime(seg.end)}</span>
           {seg.speed && seg.speed !== 1.0 && (
-            <span className="seg-speed-badge" style={{ color: seg.speed > 1 ? '#d3869b' : '#8ec07c' }}>
+            <span className="seg-speed-badge" style={{ color: seg.speed > 1 ? '#2ad4ff' : '#8ec07c' }}>
               {seg.speed.toFixed(2)}x
             </span>
           )}
@@ -191,7 +191,7 @@ function DubSegmentRow({
         {seg.rate_ratio != null && Math.abs(seg.rate_ratio - 1.0) > 0.03 && (
           <span
             className="seg-rate-badge"
-            style={{ color: seg.rate_ratio > 1.15 ? '#fb4934' : seg.rate_ratio < 0.85 ? '#83a598' : '#a89984' }}
+            style={{ color: seg.rate_ratio > 1.15 ? '#fb4934' : seg.rate_ratio < 0.85 ? '#83a598' : '#8fb2c6' }}
             title={t('segment.rate_title', { ratio: seg.rate_ratio.toFixed(2), error: seg.rate_error || '' })}
           >
             📖 {seg.rate_ratio.toFixed(2)}×
@@ -309,7 +309,7 @@ function DubSegmentRow({
         disabled={disabled}
         onChange={(e) => onEditField(seg.id, 'gain', Number(e.target.value) / 100)}
         className="seg-gain-slider"
-        style={{ accentColor: (seg.gain ?? 1.0) > 1.2 ? '#fb4934' : (seg.gain ?? 1.0) < 0.5 ? '#83a598' : '#a89984' }}
+        style={{ accentColor: (seg.gain ?? 1.0) > 1.2 ? '#fb4934' : (seg.gain ?? 1.0) < 0.5 ? '#83a598' : '#8fb2c6' }}
       />
 
       <div className="seg-actions">

@@ -16,7 +16,7 @@ import { askConfirm } from '../utils/dialog';
 
 const SIDEBAR_TABS = [
   { id: 'projects',  icon: FolderOpen,   accent: '#b8bb26' },
-  { id: 'history',   icon: History,      accent: '#d3869b' },
+  { id: 'history',   icon: History,      accent: '#2ad4ff' },
   { id: 'downloads', icon: DownloadCloud, accent: '#8ec07c' },
 ];
 
@@ -232,7 +232,7 @@ export default function Sidebar(props) {
                       />
                     ) : (
                       (mode === 'clone' ? filteredProfiles.filter(p => !p.instruct) : filteredProfiles.filter(p => !!p.instruct)).map(proj => {
-                        const accent = proj.is_locked ? '#b8bb26' : (mode === 'clone' ? '#d3869b' : '#8ec07c');
+                        const accent = proj.is_locked ? '#b8bb26' : (mode === 'clone' ? '#2ad4ff' : '#8ec07c');
                         const KindIcon = proj.is_locked ? Lock : (mode === 'clone' ? Fingerprint : Wand2);
                         return (
                           <div key={proj.id}
@@ -357,7 +357,7 @@ export default function Sidebar(props) {
                 ))}
 
                 {!isSidebarCollapsed && filteredHistory.map(item => {
-                  const accent = item.mode === 'clone' ? '#d3869b' : '#b8bb26';
+                  const accent = item.mode === 'clone' ? '#2ad4ff' : '#b8bb26';
                   const KindIcon = item.mode === 'clone' ? Fingerprint : Wand2;
                   return (
                     <div key={item.id} className="history-item" style={{ '--row-accent': accent }}>

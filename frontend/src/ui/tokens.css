@@ -9,8 +9,8 @@
   /* legacy aliases live in index.css: --primary, --accent, --bg, etc. */
 
   --color-fg:            #ebdbb2;
-  --color-fg-muted:      #a89984;
-  --color-fg-subtle:     #7c6f64;
+  --color-fg-muted:      #8fb2c6;
+  --color-fg-subtle:     #6f9ab2;
   --color-fg-inverse:    #1d2021;
 
   --color-bg:            #1d2021;
@@ -22,16 +22,16 @@
   --color-border-strong: rgba(255, 255, 255, 0.15);
   --color-border-warm:   rgba(243, 165, 182, 0.08);
 
-  --color-brand:         #d3869b;                  /* pink */
-  --color-brand-hover:   #b16286;
+  --color-brand:         #2ad4ff;                  /* pink */
+  --color-brand-hover:   #1497c2;
   --color-brand-glow:    rgba(211, 134, 155, 0.4);
 
-  --color-accent:        #fabd2f;                  /* amber */
+  --color-accent:        #25e8a0;                  /* amber */
   --color-success:       #8ec07c;                  /* green */
   --color-warn:          #fe8019;                  /* orange */
   --color-danger:        #fb4934;                  /* red */
   --color-info:          #83a598;                  /* blue */
-  --color-muted-mono:    #d5c4a1;
+  --color-muted-mono:    #d3ecff;
 
   /* ── Spacing (4px base) ─────────────────────────────────────────── */
   --space-0:   0;

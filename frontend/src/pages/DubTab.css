@@ -240,22 +240,22 @@
   gap: 8px;
   padding: 6px 10px;
   margin: 4px 0;
-  background: color-mix(in srgb, #fabd2f 12%, transparent);
-  border: 1px solid color-mix(in srgb, #fabd2f 35%, transparent);
-  border-left: 2px solid #fabd2f;
+  background: color-mix(in srgb, #25e8a0 12%, transparent);
+  border: 1px solid color-mix(in srgb, #25e8a0 35%, transparent);
+  border-left: 2px solid #25e8a0;
   border-radius: var(--chrome-radius-pill);
   font-size: 0.72rem;
   color: var(--chrome-fg);
   line-height: 1.35;
 }
 .dub-compression-warn__icon {
-  color: #fabd2f;
+  color: #25e8a0;
   font-size: 0.9rem;
   line-height: 1;
   flex-shrink: 0;
 }
 .dub-compression-warn__body { flex: 1; }
-.dub-compression-warn strong { color: #fabd2f; font-weight: var(--weight-semibold); }
+.dub-compression-warn strong { color: #25e8a0; font-weight: var(--weight-semibold); }
 
 /* ── Utility: column flex that fills remaining height ────────── */
 .dub-col            { flex: 1; display: flex; flex-direction: column; min-height: 0; }
@@ -283,7 +283,7 @@
   50%      { border-color: rgba(211, 134, 155, 0.6); background: rgba(211, 134, 155, 0.08); }
 }
 .dub-idle-drop.is-dragging {
-  border-color: #d3869b;
+  border-color: #2ad4ff;
   background: rgba(211, 134, 155, 0.05);
   animation: dub-pulse 1.2s ease-in-out infinite;
 }
@@ -352,7 +352,7 @@
 
 .dub-change-row       { display: flex; gap: 8px; margin-top: 8px; align-items: center; }
 .dub-change-row__cta  { flex: 1; margin-top: 0; }
-.dub-speakers-hint    { display: inline-flex; align-items: center; gap: 5px; font-size: 12px; color: var(--muted, #a89984); white-space: nowrap; }
+.dub-speakers-hint    { display: inline-flex; align-items: center; gap: 5px; font-size: 12px; color: var(--muted, #8fb2c6); white-space: nowrap; }
 .dub-speakers-input   { width: 52px; margin-left: 4px; padding: 4px 6px; border-radius: 6px; border: 1px solid var(--border, #3c3836); background: var(--input-bg, #282828); color: inherit; font-size: 12px; }
 
 /* Compact disabled inputs in the idle skeleton */
@@ -520,7 +520,7 @@
   background: rgba(255, 255, 255, 0.02);
 }
 .dub-ingest-sub-opt:hover { color: var(--color-fg); background: rgba(255, 255, 255, 0.05); }
-.dub-ingest-sub-opt input[type="checkbox"] { margin: 0; accent-color: #d3869b; }
+.dub-ingest-sub-opt input[type="checkbox"] { margin: 0; accent-color: #2ad4ff; }
 
 /* Inline "install engine" chip next to the Engine label. Tight + brand-tinted
    so it reads as an affordance, not a badge. Disappears after a successful
@@ -532,7 +532,7 @@
   line-height: 1.4;
   background: rgba(211, 134, 155, 0.14);
   border: 1px solid rgba(211, 134, 155, 0.35);
-  color: #d3869b;
+  color: #2ad4ff;
   border-radius: 999px;
   cursor: pointer;
   white-space: nowrap;

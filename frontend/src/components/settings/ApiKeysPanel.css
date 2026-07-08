@@ -111,7 +111,7 @@
 }
 
 .apikeys-row__set { color: var(--chrome-severity-ok, #8ec07c); }
-.apikeys-row__unset { color: var(--chrome-severity-warn, #fabd2f); }
+.apikeys-row__unset { color: var(--chrome-severity-warn, #25e8a0); }
 .apikeys-row__whoami--ok { color: var(--chrome-severity-ok, #8ec07c); }
 .apikeys-row__whoami--bad { color: var(--chrome-severity-err); }
 

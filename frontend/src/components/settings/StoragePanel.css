@@ -51,7 +51,7 @@
 .storagepanel__btn--ghost { background: transparent; color: inherit; }
 .storagepanel__meta { margin: 0; font-size: 11px; opacity: 0.7; }
 .storagepanel__meta code { font-size: 11px; }
-.storagepanel__restart { margin: 0; font-size: 12px; color: var(--warn, #fabd2f); }
+.storagepanel__restart { margin: 0; font-size: 12px; color: var(--warn, #25e8a0); }
 .storagepanel__error {
   font-size: 12px;
   color: var(--danger, #fb4934);

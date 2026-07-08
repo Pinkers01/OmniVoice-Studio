@@ -44,13 +44,13 @@
 
 /* primary — solid gradient fill with glow */
 .ui-btn--primary {
-  background: linear-gradient(135deg, var(--chrome-accent, #d3869b), color-mix(in srgb, var(--chrome-accent, #d3869b) 70%, #c07090));
+  background: linear-gradient(135deg, var(--chrome-accent, #2ad4ff), color-mix(in srgb, var(--chrome-accent, #2ad4ff) 70%, #c07090));
   color: #1d2021;
   border-color: transparent;
   font-weight: 600;
   box-shadow:
-    0 0 0 1px color-mix(in srgb, var(--chrome-accent, #d3869b) 30%, transparent),
-    0 1px 4px color-mix(in srgb, var(--chrome-accent, #d3869b) 15%, transparent);
+    0 0 0 1px color-mix(in srgb, var(--chrome-accent, #2ad4ff) 30%, transparent),
+    0 1px 4px color-mix(in srgb, var(--chrome-accent, #2ad4ff) 15%, transparent);
   transition:
     background var(--dur-fast, 0.15s) var(--ease-out, ease-out),
     box-shadow var(--dur-fast, 0.15s) var(--ease-out, ease-out),
@@ -61,14 +61,14 @@
   filter: brightness(1.1);
   transform: translateY(-1px);
   box-shadow:
-    0 0 0 1px color-mix(in srgb, var(--chrome-accent, #d3869b) 45%, transparent),
-    0 4px 12px color-mix(in srgb, var(--chrome-accent, #d3869b) 25%, transparent);
+    0 0 0 1px color-mix(in srgb, var(--chrome-accent, #2ad4ff) 45%, transparent),
+    0 4px 12px color-mix(in srgb, var(--chrome-accent, #2ad4ff) 25%, transparent);
 }
 .ui-btn--primary:active:not(:disabled) {
   transform: scale(0.98);
   filter: brightness(0.95);
   box-shadow:
-    0 0 0 1px color-mix(in srgb, var(--chrome-accent, #d3869b) 30%, transparent);
+    0 0 0 1px color-mix(in srgb, var(--chrome-accent, #2ad4ff) 30%, transparent);
 }
 
 /* subtle — default neutral surface action */

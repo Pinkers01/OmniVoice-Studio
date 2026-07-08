@@ -14,9 +14,9 @@ use tauri::{AppHandle, Emitter};
 use tauri_plugin_updater::UpdaterExt;
 
 const STABLE_MANIFEST: &str =
-    "https://github.com/debpalash/OmniVoice-Studio/releases/latest/download/latest.json";
+    "https://github.com/Pinkers01/OmniVoice-Studio/releases/latest/download/latest.json";
 const PREVIEW_MANIFEST: &str =
-    "https://github.com/debpalash/OmniVoice-Studio/releases/download/preview/latest.json";
+    "https://github.com/Pinkers01/OmniVoice-Studio/releases/download/preview/latest.json";
 
 /// Endpoints for a channel. Preview tries the rolling `preview` manifest first,
 /// then falls back to stable so a preview user still receives a newer *stable*
@@ -104,7 +104,7 @@ pub async fn install_update(app: AppHandle, channel: String) -> Result<(), Strin
 // ── GitHub releases (changelog/history panel) ─────────────────────────────
 
 const RELEASES_API: &str =
-    "https://api.github.com/repos/debpalash/OmniVoice-Studio/releases?per_page=30";
+    "https://api.github.com/repos/Pinkers01/OmniVoice-Studio/releases?per_page=30";
 
 #[derive(Serialize)]
 pub struct ReleaseInfo {

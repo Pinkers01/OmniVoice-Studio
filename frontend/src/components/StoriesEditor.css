@@ -239,10 +239,10 @@
 /* ── Character color palette ──────────────────────────────────────── */
 
 .stories-track__voice-dot[data-char="narrator"]  { background: var(--color-accent); }
-.stories-track__voice-dot[data-char="char-0"]    { background: #d3869b; }
+.stories-track__voice-dot[data-char="char-0"]    { background: #2ad4ff; }
 .stories-track__voice-dot[data-char="char-1"]    { background: #83a598; }
 .stories-track__voice-dot[data-char="char-2"]    { background: #b8bb26; }
-.stories-track__voice-dot[data-char="char-3"]    { background: #fabd2f; }
+.stories-track__voice-dot[data-char="char-3"]    { background: #25e8a0; }
 .stories-track__voice-dot[data-char="char-4"]    { background: #fe8019; }
 .stories-track__voice-dot[data-char="char-5"]    { background: #8ec07c; }
 

@@ -191,7 +191,7 @@ function WaveformTimeline({
         height: 20,
         waveColor: 'rgba(168,153,132,0.25)',
         progressColor: 'rgba(211,134,155,0.4)',
-        cursorColor: '#d3869b',
+        cursorColor: '#2ad4ff',
       });
       const timeline = TimelinePlugin.create({
         height: 14,
@@ -206,7 +206,7 @@ function WaveformTimeline({
         container:     waveContainerRef.current,
         waveColor:     'rgba(168,153,132,0.45)',
         progressColor: 'rgba(211,134,155,0.75)',
-        cursorColor:   '#d3869b',
+        cursorColor:   '#2ad4ff',
         cursorWidth:   2,
         height:        initialHeight,
         barWidth:      2,
@@ -527,7 +527,7 @@ function WaveformTimeline({
           {/* Loading shimmer */}
           {!ready && !loadError && (
             <div className="wfm-loading">
-              <Loader className="spinner" size={12} color="#d3869b"/>
+              <Loader className="spinner" size={12} color="#2ad4ff"/>
               <span className="wfm-loading__text">Loading waveform…</span>
             </div>
           )}

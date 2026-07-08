@@ -652,7 +652,7 @@ export default function StoriesEditor({ profiles = [] }) {
                 />
 
                 <div className="stories-track__voice">
-                  <span className="stories-track__voice-dot" style={{ background: member ? member.color : '#a89984' }} />
+                  <span className="stories-track__voice-dot" style={{ background: member ? member.color : '#8fb2c6' }} />
                   <select
                     className="stories-track__voice-select"
                     value={track.character}

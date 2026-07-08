@@ -6,7 +6,7 @@
   border-left: 2px solid transparent;
 }
 .segment-active {
-  border-left: 2px solid #d3869b !important;
+  border-left: 2px solid #2ad4ff !important;
   background: rgba(211, 134, 155, 0.08) !important;
 }
 .segment-done {
@@ -26,7 +26,7 @@
 }
 .segment-row.segment-playing.segment-active {
   /* Generation wins visually when both are true. */
-  box-shadow: inset 2px 0 0 #d3869b;
+  box-shadow: inset 2px 0 0 #2ad4ff;
 }
 
 /* Per-cell widths are inherited from the shared grid template defined
@@ -109,12 +109,12 @@
 }
 .seg-orig-label {
   opacity: 0.8; text-transform: uppercase; font-weight: 600;
-  font-size: 0.48rem; color: #7c6f64;
+  font-size: 0.48rem; color: #6f9ab2;
 }
 .seg-orig-text {
   flex: 1; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
 }
-.seg-budget-warn { color: #fabd2f; font-size: 0.48rem; }
+.seg-budget-warn { color: #25e8a0; font-size: 0.48rem; }
 .seg-restore-btn {
   background: none; border: none; color: #83a598;
   cursor: pointer; padding: 0; font-size: 0.52rem;

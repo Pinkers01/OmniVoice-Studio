@@ -70,8 +70,8 @@ function formatFrontendLine(entry) {
 
 function SeverityIcon({ level, size = 11 }) {
   if (level === 'error') return <AlertCircle size={size} color="#fb4934" />;
-  if (level === 'warn')  return <AlertTriangle size={size} color="#fabd2f" />;
-  return <Info size={size} color="#7c6f64" />;
+  if (level === 'warn')  return <AlertTriangle size={size} color="#25e8a0" />;
+  return <Info size={size} color="#6f9ab2" />;
 }
 
 // UiScaleToggle and ThemePicker used to live here as always-visible

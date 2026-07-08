@@ -36,9 +36,9 @@
   gap: 4px;
   padding: 4px 10px;
   border-radius: 8px;
-  border: 1px solid color-mix(in srgb, #d3869b 30%, transparent);
-  background: color-mix(in srgb, #d3869b 8%, transparent);
-  color: #d3869b;
+  border: 1px solid color-mix(in srgb, #2ad4ff 30%, transparent);
+  background: color-mix(in srgb, #2ad4ff 8%, transparent);
+  color: #2ad4ff;
   font-size: var(--text-xs, 11px);
   font-weight: 500;
   cursor: pointer;
@@ -46,7 +46,7 @@
 }
 
 .casting-view__auto-btn:hover {
-  background: color-mix(in srgb, #d3869b 15%, transparent);
+  background: color-mix(in srgb, #2ad4ff 15%, transparent);
 }
 
 .casting-view__badge {
@@ -93,7 +93,7 @@
   width: 28px;
   height: 28px;
   border-radius: 50%;
-  background: linear-gradient(135deg, #d3869b, #b16286);
+  background: linear-gradient(135deg, #2ad4ff, #1497c2);
   color: #1d2021;
   display: flex;
   align-items: center;
@@ -149,7 +149,7 @@
 }
 
 .casting-row__picker:hover {
-  border-color: color-mix(in srgb, #d3869b 40%, transparent);
+  border-color: color-mix(in srgb, #2ad4ff 40%, transparent);
 }
 
 .casting-row__unassigned {
@@ -160,7 +160,7 @@
 .casting-row__preview {
   background: none;
   border: none;
-  color: var(--chrome-fg-muted, #a89984);
+  color: var(--chrome-fg-muted, #8fb2c6);
   cursor: pointer;
   padding: 4px;
   border-radius: 6px;
@@ -171,8 +171,8 @@
 }
 
 .casting-row__preview:hover {
-  color: #f3a5b6;
-  background: color-mix(in srgb, #f3a5b6 10%, transparent);
+  color: #2ad4ff;
+  background: color-mix(in srgb, #2ad4ff 10%, transparent);
 }
 
 /* ── Dropdown ───────────────────────────────────────────────────────── */

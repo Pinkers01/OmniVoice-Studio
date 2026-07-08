@@ -1,0 +1,274 @@
+/* ============================================================
+   JARVIS THEME — OmniVoice Studio
+   Vibrant sci-fi HUD: electric blue · neon green · white.
+   Luminous deep-blue space, no black/gold. Non-destructive.
+   ============================================================ */
+
+:root,
+:root[data-theme],
+.app,
+body {
+  /* ── Text: bright, white-forward ────────────────────────── */
+  --color-fg:            #f2faff;
+  --color-fg-muted:      #a7c8dc;
+  --color-fg-subtle:     #6f9ab2;
+  --color-fg-inverse:    #03101f;
+
+  /* ── Background: luminous deep blue (NOT black) ─────────── */
+  --color-bg:            #0a1730;
+  --color-bg-elev-1:     rgba(22, 44, 82, 0.62);
+  --color-bg-elev-2:     rgba(16, 36, 70, 0.48);
+  --color-bg-elev-3:     rgba(12, 28, 56, 0.36);
+
+  --color-border:        rgba(90, 200, 255, 0.18);
+  --color-border-strong: rgba(40, 200, 255, 0.40);
+  --color-border-warm:   rgba(40, 255, 180, 0.14);
+
+  /* ── Brand = electric blue ──────────────────────────────── */
+  --color-brand:         #18b4ff;
+  --color-brand-hover:   #5fd2ff;
+  --color-brand-glow:    rgba(24, 180, 255, 0.55);
+
+  /* ── Accent = neon green ────────────────────────────────── */
+  --color-accent:        #25ffb0;
+  --color-success:       #25ffb0;
+  --color-warn:          #ffd24a;
+  --color-danger:        #ff5a7a;
+  --color-info:          #4fd0ff;
+
+  --color-chrome-bg:     #081427;
+  --color-chrome-fg:     #cdeaff;
+
+  /* ── Legacy alias block ─────────────────────────────────── */
+  --primary:        #18b4ff;
+  --primary-hover:  #5fd2ff;
+  --accent:         #25ffb0;
+  --bg:             #0a1730;
+  --glass-bg:       rgba(18, 40, 76, 0.55);
+  --glass-border:   rgba(90, 200, 255, 0.22);
+  --glass-shadow:   0 1px 0 0 rgba(255,255,255,0.05) inset,
+                    0 10px 34px rgba(0, 8, 24, 0.5),
+                    0 0 0 1px rgba(24, 180, 255, 0.07);
+  --blur:           blur(15px) saturate(150%);
+  --text-primary:   #f2faff;
+  --text-secondary: #a7c8dc;
+
+  /* first-run wizard / chrome accents */
+  --chrome-accent:  #18b4ff;
+  --frs-accent:     #18b4ff;
+  --frs-ok:         #25ffb0;
+
+  color-scheme: dark;
+}
+
+/* ── Luminous deep-blue backdrop with green nebula ─────────── */
+body {
+  background-color: #081428 !important;
+  position: relative;
+}
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: -2;
+  pointer-events: none;
+  background:
+    radial-gradient(1300px 760px at 80% -10%, rgba(30, 150, 255, 0.26), transparent 60%),
+    radial-gradient(1000px 680px at 6% 112%, rgba(37, 255, 176, 0.14), transparent 60%),
+    radial-gradient(800px 560px at 50% 48%, rgba(40, 120, 220, 0.12), transparent 70%),
+    linear-gradient(180deg, #0c1c3a 0%, #081428 62%, #060f22 100%);
+}
+body::after {
+  /* bright drifting starfield */
+  content: "";
+  position: fixed;
+  inset: -40%;
+  z-index: -1;
+  pointer-events: none;
+  background-image:
+    radial-gradient(1.4px 1.4px at 22% 28%, rgba(255,255,255,0.9), transparent),
+    radial-gradient(1.2px 1.2px at 68% 62%, rgba(120,235,255,0.8), transparent),
+    radial-gradient(1.4px 1.4px at 84% 20%, rgba(150,255,210,0.7), transparent),
+    radial-gradient(1px 1px at 14% 58%, rgba(220,245,255,0.7), transparent),
+    radial-gradient(1.2px 1.2px at 90% 84%, rgba(255,255,255,0.65), transparent),
+    radial-gradient(1px 1px at 45% 12%, rgba(120,255,200,0.6), transparent);
+  background-repeat: repeat;
+  background-size: 680px 680px;
+  opacity: 0.42;
+  animation: jarvis-drift 200s linear infinite;
+}
+@keyframes jarvis-drift {
+  from { transform: translate3d(0,0,0); }
+  to   { transform: translate3d(-340px,-340px,0); }
+}
+
+/* ── Glass panels → instrument plates, blue rim ────────────── */
+[class*="glass"],
+[class*="card"],
+[class*="panel"],
+[class*="Card"],
+[class*="Panel"],
+[class*="sidebar"],
+[class*="Sidebar"] {
+  border-color: var(--glass-border) !important;
+  box-shadow: var(--glass-shadow) !important;
+  backdrop-filter: var(--blur);
+}
+
+/* ── Headings: white with electric-blue glow ───────────────── */
+h1, h2, h3 {
+  color: #ffffff;
+  text-shadow: 0 0 16px rgba(24, 180, 255, 0.30);
+  letter-spacing: 0.005em;
+}
+
+/* ── Primary buttons = energized blue→green ────────────────── */
+button[class*="primary"],
+.btn-primary,
+button[type="submit"] {
+  background: linear-gradient(180deg, rgba(24,180,255,0.26), rgba(37,255,176,0.16)) !important;
+  border: 1px solid rgba(24, 180, 255, 0.55) !important;
+  color: #ffffff !important;
+  box-shadow: 0 0 0 1px rgba(24,180,255,0.14), 0 4px 20px rgba(0,10,30,0.45),
+              inset 0 0 12px rgba(37, 255, 176, 0.08);
+  text-shadow: 0 0 7px rgba(24, 180, 255, 0.4);
+  transition: box-shadow .2s ease, transform .12s ease, border-color .2s ease;
+}
+button[class*="primary"]:hover,
+.btn-primary:hover,
+button[type="submit"]:hover {
+  border-color: rgba(37, 255, 176, 0.75) !important;
+  box-shadow: 0 0 0 1px rgba(37,255,176,0.28), 0 0 26px rgba(24, 180, 255, 0.4),
+              inset 0 0 16px rgba(37, 255, 176, 0.14);
+  transform: translateY(-1px);
+}
+
+/* ── Inputs: console slabs ─────────────────────────────────── */
+input, textarea, select {
+  background: rgba(10, 24, 50, 0.66) !important;
+  border-color: var(--color-border) !important;
+  color: var(--text-primary) !important;
+}
+input::placeholder, textarea::placeholder { color: var(--color-fg-subtle) !important; }
+input:focus, textarea:focus, select:focus {
+  border-color: var(--color-brand) !important;
+  box-shadow: 0 0 0 2px rgba(24, 180, 255, 0.18), 0 0 14px rgba(24, 180, 255, 0.22) !important;
+  outline: none !important;
+}
+
+/* ── Links / accents ───────────────────────────────────────── */
+a { color: var(--color-brand); }
+a:hover { color: var(--color-accent); }
+
+/* ── Scrollbars: blue→green ────────────────────────────────── */
+::-webkit-scrollbar { width: 8px; height: 8px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(180deg, rgba(24,180,255,0.5), rgba(37,255,176,0.4));
+  border-radius: 6px;
+}
+::-webkit-scrollbar-thumb:hover { background: rgba(37,255,176,0.6); }
+
+::selection { background: rgba(24, 180, 255, 0.30); color: #ffffff; }
+
+/* ── Pinky Creative Studio watermark (subtle, non-interactive) ─ */
+#root::after {
+  content: "◆ PINKY CREATIVE STUDIO";
+  position: fixed;
+  top: 7px;
+  right: 12px;
+  z-index: 9997;
+  pointer-events: none;
+  font: 600 9px/1 'IBM Plex Mono', ui-monospace, monospace;
+  letter-spacing: 0.14em;
+  color: rgba(120, 220, 255, 0.5);
+  text-shadow: 0 0 8px rgba(24, 180, 255, 0.35);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  body::after { animation: none; }
+}
+
+/* ============================================================
+   PINKY OVERHAUL v2 — jasny tekst · kafelki · animacje
+   ============================================================ */
+
+/* ── 1. Tekst: jasny i czytelny (zabij resztki brązu) ─────── */
+body, .app, p, span, label, div, li, td, th, small, strong, em, h1,h2,h3,h4,h5,h6,
+[class*="muted"], [class*="subtle"], [class*="desc"], [class*="hint"], [class*="label"], [class*="sub"] {
+  -webkit-font-smoothing: antialiased;
+}
+[class*="muted"], [class*="-sub"], [class*="subtitle"], [class*="hint"], [class*="desc"], [class*="caption"] {
+  color: #9ec4dc !important;
+}
+:root { --color-fg: #eaf6ff; --color-fg-muted: #9ec4dc; --text-primary: #eaf6ff; --text-secondary: #9ec4dc; --color-chrome-fg: #cdeaff; }
+
+/* ── 2. Kafelki: sekcje jako czyste karty z oddechem ──────── */
+[class*="card"], [class*="Card"], [class*="panel"], [class*="Panel"],
+[class*="section"], [class*="Section"], [class*="tile"], [class*="box"], [class*="group"] {
+  border-radius: 16px !important;
+  border: 1px solid rgba(96,165,200,0.16) !important;
+  background: linear-gradient(160deg, rgba(18,40,76,0.5), rgba(10,22,44,0.42)) !important;
+  box-shadow: 0 8px 26px rgba(0,8,24,0.4), inset 0 1px 0 rgba(255,255,255,0.04) !important;
+  transition: transform .18s ease, box-shadow .22s ease, border-color .22s ease;
+}
+[class*="card"]:hover, [class*="tile"]:hover, [class*="preset"]:hover {
+  transform: translateY(-2px);
+  border-color: rgba(42,212,255,0.4) !important;
+  box-shadow: 0 12px 32px rgba(0,8,24,0.5), 0 0 18px rgba(42,212,255,0.14) !important;
+}
+
+/* preset/profile/tag chipy → wyraźne kafelki */
+[class*="preset-btn"], [class*="tag-btn"], [class*="chip"], [class*="profile"] {
+  border-radius: 12px !important;
+  transition: all .16s ease;
+}
+[class*="tag-btn"]:hover, [class*="chip"]:hover { background: rgba(42,212,255,0.14) !important; transform: translateY(-1px); }
+
+/* ── 3. Animacje: wejście paneli + płynność ───────────────── */
+@keyframes pinkyFadeUp { from { opacity:0; transform: translateY(10px); } to { opacity:1; transform:none; } }
+@keyframes pinkyGlow { 0%,100% { box-shadow:0 0 16px rgba(42,212,255,.25);} 50% { box-shadow:0 0 26px rgba(37,255,176,.4);} }
+[class*="panel"], [class*="card"], [class*="view"], [class*="tab-content"], main, section {
+  animation: pinkyFadeUp .4s ease both;
+}
+button, a, input, select, textarea, [role="button"], [class*="btn"] {
+  transition: transform .14s ease, box-shadow .18s ease, background .18s ease, border-color .18s ease, color .15s ease !important;
+}
+button:hover, [class*="btn"]:hover, [role="button"]:hover { transform: translateY(-1px); }
+button:active, [class*="btn"]:active { transform: translateY(0) scale(.98); }
+
+/* primary/CTA → świecący, animowany */
+button[class*="primary"], .btn-primary, button[type="submit"], [class*="footer-cta"], [class*="cta"] {
+  background: linear-gradient(135deg, #18b4ff, #25ffb0) !important;
+  color: #04101f !important; font-weight: 700 !important; border: none !important;
+  animation: pinkyGlow 3.5s ease-in-out infinite;
+}
+button[class*="primary"]:hover, [class*="footer-cta"]:hover { filter: brightness(1.08); transform: translateY(-2px); }
+
+/* większy oddech w głównym obszarze (mniej "ciasnych okienek") */
+[class*="composer"], [class*="form"], [class*="content"], [class*="main"] { gap: 14px !important; }
+
+/* nagłówki sekcji jaśniejsze + spacing */
+h1,h2,h3 { color:#ffffff !important; letter-spacing:.01em; }
+
+/* ── MEGA źródło głosu: wielkie widoczne buttony (dodaj/nagraj) ───── */
+.clone-mega-source {
+  display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin: 6px 0 16px;
+}
+.mega-src-btn {
+  display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 7px;
+  min-height: 116px; padding: 18px; border-radius: 18px; cursor: pointer; text-align: center;
+  border: 2px solid rgba(42,212,255,0.5);
+  background: linear-gradient(150deg, rgba(24,180,255,0.18), rgba(37,255,176,0.12)) !important;
+  color: #eaf6ff !important; font-weight: 700; transition: transform .16s ease, box-shadow .22s ease, border-color .2s;
+  box-shadow: 0 6px 24px rgba(0,8,24,0.4), 0 0 18px rgba(42,212,255,0.18);
+  animation: pinkyGlow 3.5s ease-in-out infinite;
+}
+.mega-src-btn span { font-size: 1.05rem; }
+.mega-src-btn small { font-weight: 400; font-size: .76rem; color: #9ec4dc; }
+.mega-src-btn svg { color: #2ad4ff; }
+.mega-src-btn:hover { transform: translateY(-3px) scale(1.01); border-color: #25ffb0; box-shadow: 0 12px 34px rgba(0,8,24,0.55), 0 0 28px rgba(37,255,176,0.35); }
+.mega-record.is-rec { border-color: #ff5a7a; background: linear-gradient(150deg, rgba(255,90,122,0.22), rgba(255,160,80,0.14)) !important; animation: pinkyPulseRec 1.1s ease-in-out infinite; }
+.mega-record.is-rec svg { color: #ff5a7a; }
+@keyframes pinkyPulseRec { 50% { box-shadow: 0 0 30px rgba(255,90,122,0.55); } }
+@media (max-width: 720px) { .clone-mega-source { grid-template-columns: 1fr; } }

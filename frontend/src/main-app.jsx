@@ -12,11 +12,35 @@ import '@fontsource-variable/source-serif-4';
 import './i18n';   // ← initialise i18next before any component renders
 import './ui';
 import './index.css';
+import './jarvis-theme.css';
 import App from './App.jsx';
 import RemoteAuthGate from './components/RemoteAuthGate';
 import { installConsoleCapture } from './utils/consoleBuffer.js';
 
 installConsoleCapture();
+
+// ── Pinky Creative Studio branding + easter egg ───────────────────────────
+try {
+  const css = 'color:#18b4ff;font-weight:bold;text-shadow:0 0 6px rgba(24,180,255,.6)';
+  // eslint-disable-next-line no-console
+  console.log('%c\n  ██████╗ ███╗   ███╗███╗   ██╗██╗\n ██╔═══██╗████╗ ████║████╗  ██║██║\n ██║   ██║██╔████╔██║██╔██╗ ██║██║\n ██║   ██║██║╚██╔╝██║██║╚██╗██║██║\n ╚██████╔╝██║ ╚═╝ ██║██║ ╚████║██║\n  ╚═════╝ ╚═╝     ╚═╝╚═╝  ╚═══╝╚═╝   VOICE STUDIO\n', css);
+  // eslint-disable-next-line no-console
+  console.log('%c⚡ Powered by Pinky Creative Studio · stopmetzoeken.store', 'color:#25ffb0');
+  // Konami → toast
+  const seq = ['ArrowUp','ArrowUp','ArrowDown','ArrowDown','ArrowLeft','ArrowRight','ArrowLeft','ArrowRight','b','a'];
+  let i = 0;
+  window.addEventListener('keydown', (e) => {
+    i = (e.key === seq[i] || e.key?.toLowerCase() === seq[i]) ? i + 1 : 0;
+    if (i === seq.length) {
+      i = 0;
+      const d = document.createElement('div');
+      d.textContent = '🛸 PINKY MODE — built by Pinky Creative Studio';
+      d.style.cssText = 'position:fixed;left:50%;top:24px;transform:translateX(-50%);z-index:99999;padding:12px 22px;border-radius:12px;background:linear-gradient(135deg,#18b4ff,#25ffb0);color:#04101f;font:600 14px/1 ui-sans-serif,system-ui;box-shadow:0 8px 30px rgba(24,180,255,.5)';
+      document.body.appendChild(d);
+      setTimeout(() => d.remove(), 4200);
+    }
+  });
+} catch { /* non-fatal */ }
 
 const queryClient = new QueryClient({
   defaultOptions: {

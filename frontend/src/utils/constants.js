@@ -45,7 +45,8 @@ export const PRESETS = [
     attrs: { Gender: 'female', Age: 'young adult', Pitch: 'moderate pitch', Style: 'Auto', EnglishAccent: 'Auto', ChineseDialect: '四川话' } },
 ];
 
-export const CLONE_MAX_SECONDS = 15;
+// Ref audio do klonowania: do 5 minut (lepszy kontekst + dopasowanie głosu).
+export const CLONE_MAX_SECONDS = 300;
 
 // Instruct items recognised by the backend validator. Items outside this set
 // cause ValidationFailed at generation time.
