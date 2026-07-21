@@ -6,6 +6,23 @@ The format is loosely based on [Keep a Changelog](https://keepachangelog.com/).
 Versions track the desktop app (`tauri.conf.json` + `frontend/src-tauri/Cargo.toml`).
 The bundled TTS model package (`pyproject.toml`) is versioned independently.
 
+## [0.3.7] — 2026-07-21
+
+### Added
+- **Human-readable emotion tag palette** on the Voice Clone tab: raw tokens like
+  `[laughter]` / `[question-ah]` are now grouped chips (Emotions / Questions /
+  Surprise) with emoji, localized labels and an explainer tooltip; clicking a chip
+  inserts the token at the caret. Raw token remains visible via `title`.
+- **Simple/Advanced mode for the Production Overrides panel.** Simple (default)
+  shows three quality presets (Quick draft 1.5/25, Balanced 2.0/40, Max quality
+  2.5/52) plus only the Voice fidelity and Speech speed sliders; Advanced keeps
+  the full slider set with the localized names and InfoTips shipped in 0.3.6+.
+  Choice persists in localStorage.
+
+### Notes
+- First release actually shipping the readable slider labels + InfoTips merged
+  on 2026-07-08 (they never reached a published build; 0.3.6 binaries predate them).
+
 ## [0.3.5] — 2026-06-03
 
 ### Fixed

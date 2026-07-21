@@ -207,6 +207,26 @@
     "opt_very_high_pitch": "very high pitch",
     "opt_whisper": "whisper",
     "style_placeholder": "e.g. whisper",
+    "tags": {
+      "title": "Emotion Inserts",
+      "help": "Click a chip to insert a marker at the cursor position in your text. The model will voice that moment with the matching emotion.",
+      "group_emotions": "Emotions",
+      "group_questions": "Questions & confirmations",
+      "group_surprise": "Surprise",
+      "laughter": "Laughter",
+      "sigh": "Sigh",
+      "dissatisfaction_hnn": "Annoyance",
+      "confirmation_en": "Confirmation \"mhm\"",
+      "question_en": "Question",
+      "question_ah": "Question \"ah?\"",
+      "question_oh": "Question \"oh?\"",
+      "question_ei": "Question \"ei?\"",
+      "question_yi": "Question \"yi?\"",
+      "surprise_ah": "Surprise \"ah!\"",
+      "surprise_oh": "Surprise \"oh!\"",
+      "surprise_wa": "Surprise \"wow!\"",
+      "surprise_yo": "Surprise \"yo!\""
+    },
     "overrides": {
       "cfg_help": "How strongly the output follows the reference voice. Higher = more faithful timbre, but may sound stiffer. Default: 2.0.",
       "speed_help": "Speaking rate. 0.5 = very slow, 1.0 = normal, 2.0 = very fast. Default: 1.0.",
@@ -217,7 +237,15 @@
       "steps_help": "Number of synthesis iterations. 8 = fast/draft, 16 = balanced, 32+ = highest quality (slower). Default: 16.",
       "duration_help": "Forced output length in seconds. Leave empty (Auto) to let the model estimate duration from the text.",
       "denoise_help": "Adds a denoising token to the reference sample. Reduces background noise from the source voice before synthesis. Recommended: on.",
-      "postprocess_help": "Removes silence, normalizes volume, and adds fade-in/out to the generated audio. Recommended: on."
+      "postprocess_help": "Removes silence, normalizes volume, and adds fade-in/out to the generated audio. Recommended: on.",
+      "mode_simple": "Simple",
+      "mode_advanced": "Advanced",
+      "preset_draft": "Quick draft",
+      "preset_draft_desc": "Fastest generation, good for quick tests.",
+      "preset_balanced": "Balanced",
+      "preset_balanced_desc": "Good balance of quality and speed.",
+      "preset_max": "Maximum quality",
+      "preset_max_desc": "Highest quality, slower generation."
     }
   },
   "settings": {

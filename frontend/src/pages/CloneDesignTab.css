@@ -205,6 +205,76 @@
   border: 1px dashed rgba(255, 255, 255, 0.08);
 }
 
+/* Production-overrides mode toggle (Simple / Advanced) */
+.ov-mode-toggle {
+  display: inline-flex;
+  gap: 2px;
+  padding: 2px;
+  margin-bottom: 10px;
+  border-radius: var(--chrome-radius-pill);
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid var(--chrome-border);
+}
+.ov-mode-btn {
+  font-family: var(--font-sans);
+  font-weight: 500;
+  font-size: 0.72rem;
+  padding: 5px 14px;
+  border: none;
+  border-radius: var(--chrome-radius-pill);
+  background: transparent;
+  color: var(--chrome-fg-muted);
+  cursor: pointer;
+  transition: background var(--dur-fast), color var(--dur-fast);
+}
+.ov-mode-btn:hover { color: var(--chrome-fg); }
+.ov-mode-btn.active {
+  background: var(--chrome-accent-bg);
+  color: var(--chrome-accent);
+}
+
+/* Simple-mode quality presets */
+.ov-preset-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 6px;
+  margin-bottom: 10px;
+}
+.ov-preset-card {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  padding: 8px 10px;
+  text-align: left;
+  border-radius: var(--chrome-radius-pill);
+  background: transparent;
+  border: 1px solid var(--chrome-border);
+  color: var(--chrome-fg-muted);
+  cursor: pointer;
+  transition: background var(--dur-fast), border-color var(--dur-fast), color var(--dur-fast);
+}
+.ov-preset-card:hover {
+  background: var(--chrome-hover-bg);
+  border-color: var(--chrome-border-strong);
+  color: var(--chrome-fg);
+}
+.ov-preset-card.active {
+  background: var(--chrome-accent-bg);
+  border-color: var(--chrome-accent-border);
+  color: var(--chrome-accent);
+}
+.ov-preset-card__name {
+  font-family: var(--font-sans);
+  font-weight: 600;
+  font-size: 0.76rem;
+}
+.ov-preset-card__desc {
+  font-family: var(--font-sans);
+  font-size: 0.64rem;
+  color: var(--chrome-fg-dim);
+}
+.ov-preset-card.active .ov-preset-card__desc { color: inherit; opacity: 0.8; }
+
 /* ── Responsive: overrides panel ─────────────────────────────── */
 
 /* Below 900px: collapse grid-4 to 2 columns, single-column split grid */
@@ -223,6 +293,14 @@
   .override-content .grid-4 {
     grid-template-columns: minmax(0, 1fr);
     gap: 8px;
+  }
+
+  .ov-preset-grid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .ov-mode-btn {
+    min-height: 44px;
   }
 
   .override-content .label-row {

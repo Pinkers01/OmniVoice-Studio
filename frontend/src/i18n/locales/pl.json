@@ -304,6 +304,26 @@
     "opt_very_high_pitch": "bardzo wysoki ton",
     "opt_whisper": "szeptać",
     "style_placeholder": "np. szeptać",
+    "tags": {
+      "title": "Wstawki emocji",
+      "help": "Kliknij chip, aby wstawić znacznik w miejscu kursora w tekście. Model odegra ten fragment z odpowiednią emocją w głosie.",
+      "group_emotions": "Emocje",
+      "group_questions": "Pytania i potwierdzenia",
+      "group_surprise": "Zaskoczenie",
+      "laughter": "Śmiech",
+      "sigh": "Westchnienie",
+      "dissatisfaction_hnn": "Niezadowolenie",
+      "confirmation_en": "Potwierdzenie „mhm”",
+      "question_en": "Pytanie",
+      "question_ah": "Pytanie „a?”",
+      "question_oh": "Pytanie „o?”",
+      "question_ei": "Pytanie „ej?”",
+      "question_yi": "Pytanie „ji?”",
+      "surprise_ah": "Zaskoczenie „ach!”",
+      "surprise_oh": "Zaskoczenie „och!”",
+      "surprise_wa": "Zaskoczenie „wow!”",
+      "surprise_yo": "Zaskoczenie „jo!”"
+    },
     "overrides": {
       "cfg_help": "Jak mocno głos ma przypominać próbkę referencyjną. Wyższa wartość = wierniejsze odwzorowanie barwy, ale może brzmieć sztywniej. Domyślnie: 2.0.",
       "speed_help": "Szybkość mówienia. 0.5 = bardzo wolno, 1.0 = normalnie, 2.0 = bardzo szybko. Domyślnie: 1.0.",
@@ -314,7 +334,15 @@
       "steps_help": "Liczba iteracji syntezy. 8 = szybko/szkicowo, 16 = zbalansowanie, 32+ = najwyższa jakość (wolniej). Domyślnie: 16.",
       "duration_help": "Wymuszony czas trwania wyjścia w sekundach. Pozostaw puste (Auto), aby model sam oszacował długość na podstawie tekstu.",
       "denoise_help": "Włącza token odszumiania w próbce referencyjnej. Redukuje szumy tła z głosu źródłowego przed syntezą. Zalecane: włączone.",
-      "postprocess_help": "Usuwa ciszę, normalizuje głośność i dodaje fade-in/out do wygenerowanego dźwięku. Zalecane: włączone."
+      "postprocess_help": "Usuwa ciszę, normalizuje głośność i dodaje fade-in/out do wygenerowanego dźwięku. Zalecane: włączone.",
+      "mode_simple": "Prosty",
+      "mode_advanced": "Zaawansowany",
+      "preset_draft": "Szybki szkic",
+      "preset_draft_desc": "Najszybsza generacja, dobra do szybkich testów.",
+      "preset_balanced": "Zbalansowany",
+      "preset_balanced_desc": "Dobry kompromis jakości i szybkości.",
+      "preset_max": "Maksymalna jakość",
+      "preset_max_desc": "Najwyższa jakość, wolniejsza generacja."
     }
   },
   "about": {

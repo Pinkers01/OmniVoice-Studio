@@ -14,6 +14,32 @@ export const TAGS = [
   '[dissatisfaction-hnn]',
 ];
 
+// Ordered list of the emotion-tag groups shown in TagPalette. Order here
+// drives render order in the UI (emotions first, then questions, then
+// surprise reactions).
+export const TAG_GROUPS = ['emotions', 'questions', 'surprise'];
+
+// Human-friendly metadata for each raw tag chip in TAGS: an emoji, an
+// i18n key resolving to a plain-language Polish/English label, and the
+// group it belongs to (see TAG_GROUPS). Consumed by <TagPalette>.
+export const TAG_META = [
+  { tag: '[laughter]', emoji: '😄', labelKey: 'clone.tags.laughter', group: 'emotions' },
+  { tag: '[sigh]', emoji: '😮‍💨', labelKey: 'clone.tags.sigh', group: 'emotions' },
+  { tag: '[dissatisfaction-hnn]', emoji: '😒', labelKey: 'clone.tags.dissatisfaction_hnn', group: 'emotions' },
+
+  { tag: '[confirmation-en]', emoji: '🙂', labelKey: 'clone.tags.confirmation_en', group: 'questions' },
+  { tag: '[question-en]', emoji: '❓', labelKey: 'clone.tags.question_en', group: 'questions' },
+  { tag: '[question-ah]', emoji: '❓', labelKey: 'clone.tags.question_ah', group: 'questions' },
+  { tag: '[question-oh]', emoji: '❓', labelKey: 'clone.tags.question_oh', group: 'questions' },
+  { tag: '[question-ei]', emoji: '❓', labelKey: 'clone.tags.question_ei', group: 'questions' },
+  { tag: '[question-yi]', emoji: '❓', labelKey: 'clone.tags.question_yi', group: 'questions' },
+
+  { tag: '[surprise-ah]', emoji: '😲', labelKey: 'clone.tags.surprise_ah', group: 'surprise' },
+  { tag: '[surprise-oh]', emoji: '😲', labelKey: 'clone.tags.surprise_oh', group: 'surprise' },
+  { tag: '[surprise-wa]', emoji: '😲', labelKey: 'clone.tags.surprise_wa', group: 'surprise' },
+  { tag: '[surprise-yo]', emoji: '😲', labelKey: 'clone.tags.surprise_yo', group: 'surprise' },
+];
+
 export const CATEGORIES = {
   Gender: ['Auto', 'male', 'female'],
   Age: ['Auto', 'child', 'teenager', 'young adult', 'middle-aged', 'elderly'],

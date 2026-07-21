@@ -1,0 +1,44 @@
+/* TagPalette — human-readable emotion tags, built on the existing
+   .tag-btn / .tags-container chrome primitives (index.css). Only
+   additive rules here; never override the base .tag-btn look. */
+
+.tag-palette {
+  margin: 4px 0 6px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.tag-palette__header {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  font-family: var(--chrome-font-mono);
+  font-weight: 500;
+  font-size: var(--chrome-label-size, 11px);
+  letter-spacing: var(--chrome-label-track, 0.06em);
+  color: var(--chrome-fg-muted);
+  text-transform: uppercase;
+}
+
+.tag-palette__group {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+
+.tag-palette__group-title {
+  font-family: var(--font-sans);
+  font-size: 0.66rem;
+  font-weight: 500;
+  color: var(--chrome-fg-dim);
+}
+
+.tag-btn--emoji {
+  display: inline-flex !important;
+  align-items: center;
+  gap: 4px;
+}
+
+.tag-btn__emoji { font-size: 0.85em; line-height: 1; }
+.tag-btn__label { font-family: var(--font-sans); }
